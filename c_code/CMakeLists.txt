@@ -7,7 +7,7 @@ set(CMAKE_CXX_STANDARD 17)
 add_executable(untitled main.cpp
         main.exe
         main.cpp
-        cmake-build-debug/aSCIii.cpp
+        aSCIii.cpp
         cmake-build-debug/CMakeFiles/gravity.cpp
         cmake-build-debug/CMakeFiles/untitled.dir/equation.cpp
         factorial.c
@@ -16,7 +16,6 @@ add_executable(untitled main.cpp
         standup.c
         collatz.c
         inverse.c
-        dh.cpp
         palindrome1.c
         flip.c
         b-ternary-1.c
@@ -24,5 +23,10 @@ add_executable(untitled main.cpp
         jojo.c
         bubble.c.cpp
         binalise.c
+        b-ternary-3.c
+        palindrome-2.c
+        matrics.c
+        sudoku.c
+        matrix-mult.c
 )
 
