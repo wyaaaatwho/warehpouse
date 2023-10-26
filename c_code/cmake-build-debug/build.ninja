@@ -55,44 +55,8 @@ build CMakeFiles/untitled.dir/main.cpp.obj: CXX_COMPILER__untitled_unscanned_Deb
   OBJECT_DIR = CMakeFiles\untitled.dir
   OBJECT_FILE_DIR = CMakeFiles\untitled.dir
 
-build CMakeFiles/untitled.dir/guess_number.cpp.obj: CXX_COMPILER__untitled_unscanned_Debug C$:/Users/26711/CLionProjects/Git_example/c_code/guess_number.cpp || cmake_object_order_depends_target_untitled
-  DEP_FILE = CMakeFiles\untitled.dir\guess_number.cpp.obj.d
-  FLAGS = -g -fdiagnostics-color=always
-  OBJECT_DIR = CMakeFiles\untitled.dir
-  OBJECT_FILE_DIR = CMakeFiles\untitled.dir
-
-build CMakeFiles/untitled.dir/compare.cpp.obj: CXX_COMPILER__untitled_unscanned_Debug C$:/Users/26711/CLionProjects/Git_example/c_code/compare.cpp || cmake_object_order_depends_target_untitled
-  DEP_FILE = CMakeFiles\untitled.dir\compare.cpp.obj.d
-  FLAGS = -g -fdiagnostics-color=always
-  OBJECT_DIR = CMakeFiles\untitled.dir
-  OBJECT_FILE_DIR = CMakeFiles\untitled.dir
-
-build CMakeFiles/untitled.dir/aSCIii.cpp.obj: CXX_COMPILER__untitled_unscanned_Debug C$:/Users/26711/CLionProjects/Git_example/c_code/cmake-build-debug/aSCIii.cpp || cmake_object_order_depends_target_untitled
+build CMakeFiles/untitled.dir/aSCIii.cpp.obj: CXX_COMPILER__untitled_unscanned_Debug C$:/Users/26711/CLionProjects/Git_example/c_code/aSCIii.cpp || cmake_object_order_depends_target_untitled
   DEP_FILE = CMakeFiles\untitled.dir\aSCIii.cpp.obj.d
-  FLAGS = -g -fdiagnostics-color=always
-  OBJECT_DIR = CMakeFiles\untitled.dir
-  OBJECT_FILE_DIR = CMakeFiles\untitled.dir
-
-build CMakeFiles/untitled.dir/rmb.cpp.obj: CXX_COMPILER__untitled_unscanned_Debug C$:/Users/26711/CLionProjects/Git_example/c_code/cmake-build-debug/rmb.cpp || cmake_object_order_depends_target_untitled
-  DEP_FILE = CMakeFiles\untitled.dir\rmb.cpp.obj.d
-  FLAGS = -g -fdiagnostics-color=always
-  OBJECT_DIR = CMakeFiles\untitled.dir
-  OBJECT_FILE_DIR = CMakeFiles\untitled.dir
-
-build CMakeFiles/untitled.dir/PI.cpp.obj: CXX_COMPILER__untitled_unscanned_Debug C$:/Users/26711/CLionProjects/Git_example/c_code/PI.cpp || cmake_object_order_depends_target_untitled
-  DEP_FILE = CMakeFiles\untitled.dir\PI.cpp.obj.d
-  FLAGS = -g -fdiagnostics-color=always
-  OBJECT_DIR = CMakeFiles\untitled.dir
-  OBJECT_FILE_DIR = CMakeFiles\untitled.dir
-
-build CMakeFiles/untitled.dir/days.cpp.obj: CXX_COMPILER__untitled_unscanned_Debug C$:/Users/26711/CLionProjects/Git_example/c_code/days.cpp || cmake_object_order_depends_target_untitled
-  DEP_FILE = CMakeFiles\untitled.dir\days.cpp.obj.d
-  FLAGS = -g -fdiagnostics-color=always
-  OBJECT_DIR = CMakeFiles\untitled.dir
-  OBJECT_FILE_DIR = CMakeFiles\untitled.dir
-
-build CMakeFiles/untitled.dir/julian.cpp.obj: CXX_COMPILER__untitled_unscanned_Debug C$:/Users/26711/CLionProjects/Git_example/c_code/julian.cpp || cmake_object_order_depends_target_untitled
-  DEP_FILE = CMakeFiles\untitled.dir\julian.cpp.obj.d
   FLAGS = -g -fdiagnostics-color=always
   OBJECT_DIR = CMakeFiles\untitled.dir
   OBJECT_FILE_DIR = CMakeFiles\untitled.dir
@@ -109,6 +73,120 @@ build CMakeFiles/untitled.dir/CMakeFiles/untitled.dir/equation.cpp.obj: CXX_COMP
   OBJECT_DIR = CMakeFiles\untitled.dir
   OBJECT_FILE_DIR = CMakeFiles\untitled.dir\CMakeFiles\untitled.dir
 
+build CMakeFiles/untitled.dir/factorial.c.obj: C_COMPILER__untitled_unscanned_Debug C$:/Users/26711/CLionProjects/Git_example/c_code/factorial.c || cmake_object_order_depends_target_untitled
+  DEP_FILE = CMakeFiles\untitled.dir\factorial.c.obj.d
+  FLAGS = -g -fdiagnostics-color=always
+  OBJECT_DIR = CMakeFiles\untitled.dir
+  OBJECT_FILE_DIR = CMakeFiles\untitled.dir
+
+build CMakeFiles/untitled.dir/single.c.obj: C_COMPILER__untitled_unscanned_Debug C$:/Users/26711/CLionProjects/Git_example/c_code/single.c || cmake_object_order_depends_target_untitled
+  DEP_FILE = CMakeFiles\untitled.dir\single.c.obj.d
+  FLAGS = -g -fdiagnostics-color=always
+  OBJECT_DIR = CMakeFiles\untitled.dir
+  OBJECT_FILE_DIR = CMakeFiles\untitled.dir
+
+build CMakeFiles/untitled.dir/series.c.obj: C_COMPILER__untitled_unscanned_Debug C$:/Users/26711/CLionProjects/Git_example/c_code/series.c || cmake_object_order_depends_target_untitled
+  DEP_FILE = CMakeFiles\untitled.dir\series.c.obj.d
+  FLAGS = -g -fdiagnostics-color=always
+  OBJECT_DIR = CMakeFiles\untitled.dir
+  OBJECT_FILE_DIR = CMakeFiles\untitled.dir
+
+build CMakeFiles/untitled.dir/standup.c.obj: C_COMPILER__untitled_unscanned_Debug C$:/Users/26711/CLionProjects/Git_example/c_code/standup.c || cmake_object_order_depends_target_untitled
+  DEP_FILE = CMakeFiles\untitled.dir\standup.c.obj.d
+  FLAGS = -g -fdiagnostics-color=always
+  OBJECT_DIR = CMakeFiles\untitled.dir
+  OBJECT_FILE_DIR = CMakeFiles\untitled.dir
+
+build CMakeFiles/untitled.dir/collatz.c.obj: C_COMPILER__untitled_unscanned_Debug C$:/Users/26711/CLionProjects/Git_example/c_code/collatz.c || cmake_object_order_depends_target_untitled
+  DEP_FILE = CMakeFiles\untitled.dir\collatz.c.obj.d
+  FLAGS = -g -fdiagnostics-color=always
+  OBJECT_DIR = CMakeFiles\untitled.dir
+  OBJECT_FILE_DIR = CMakeFiles\untitled.dir
+
+build CMakeFiles/untitled.dir/inverse.c.obj: C_COMPILER__untitled_unscanned_Debug C$:/Users/26711/CLionProjects/Git_example/c_code/inverse.c || cmake_object_order_depends_target_untitled
+  DEP_FILE = CMakeFiles\untitled.dir\inverse.c.obj.d
+  FLAGS = -g -fdiagnostics-color=always
+  OBJECT_DIR = CMakeFiles\untitled.dir
+  OBJECT_FILE_DIR = CMakeFiles\untitled.dir
+
+build CMakeFiles/untitled.dir/palindrome1.c.obj: C_COMPILER__untitled_unscanned_Debug C$:/Users/26711/CLionProjects/Git_example/c_code/palindrome1.c || cmake_object_order_depends_target_untitled
+  DEP_FILE = CMakeFiles\untitled.dir\palindrome1.c.obj.d
+  FLAGS = -g -fdiagnostics-color=always
+  OBJECT_DIR = CMakeFiles\untitled.dir
+  OBJECT_FILE_DIR = CMakeFiles\untitled.dir
+
+build CMakeFiles/untitled.dir/flip.c.obj: C_COMPILER__untitled_unscanned_Debug C$:/Users/26711/CLionProjects/Git_example/c_code/flip.c || cmake_object_order_depends_target_untitled
+  DEP_FILE = CMakeFiles\untitled.dir\flip.c.obj.d
+  FLAGS = -g -fdiagnostics-color=always
+  OBJECT_DIR = CMakeFiles\untitled.dir
+  OBJECT_FILE_DIR = CMakeFiles\untitled.dir
+
+build CMakeFiles/untitled.dir/b-ternary-1.c.obj: C_COMPILER__untitled_unscanned_Debug C$:/Users/26711/CLionProjects/Git_example/c_code/b-ternary-1.c || cmake_object_order_depends_target_untitled
+  DEP_FILE = CMakeFiles\untitled.dir\b-ternary-1.c.obj.d
+  FLAGS = -g -fdiagnostics-color=always
+  OBJECT_DIR = CMakeFiles\untitled.dir
+  OBJECT_FILE_DIR = CMakeFiles\untitled.dir
+
+build CMakeFiles/untitled.dir/b-ternary-2.c.obj: C_COMPILER__untitled_unscanned_Debug C$:/Users/26711/CLionProjects/Git_example/c_code/b-ternary-2.c || cmake_object_order_depends_target_untitled
+  DEP_FILE = CMakeFiles\untitled.dir\b-ternary-2.c.obj.d
+  FLAGS = -g -fdiagnostics-color=always
+  OBJECT_DIR = CMakeFiles\untitled.dir
+  OBJECT_FILE_DIR = CMakeFiles\untitled.dir
+
+build CMakeFiles/untitled.dir/jojo.c.obj: C_COMPILER__untitled_unscanned_Debug C$:/Users/26711/CLionProjects/Git_example/c_code/jojo.c || cmake_object_order_depends_target_untitled
+  DEP_FILE = CMakeFiles\untitled.dir\jojo.c.obj.d
+  FLAGS = -g -fdiagnostics-color=always
+  OBJECT_DIR = CMakeFiles\untitled.dir
+  OBJECT_FILE_DIR = CMakeFiles\untitled.dir
+
+build CMakeFiles/untitled.dir/bubble.c.cpp.obj: CXX_COMPILER__untitled_unscanned_Debug C$:/Users/26711/CLionProjects/Git_example/c_code/bubble.c.cpp || cmake_object_order_depends_target_untitled
+  DEP_FILE = CMakeFiles\untitled.dir\bubble.c.cpp.obj.d
+  FLAGS = -g -fdiagnostics-color=always
+  OBJECT_DIR = CMakeFiles\untitled.dir
+  OBJECT_FILE_DIR = CMakeFiles\untitled.dir
+
+build CMakeFiles/untitled.dir/binalise.c.obj: C_COMPILER__untitled_unscanned_Debug C$:/Users/26711/CLionProjects/Git_example/c_code/binalise.c || cmake_object_order_depends_target_untitled
+  DEP_FILE = CMakeFiles\untitled.dir\binalise.c.obj.d
+  FLAGS = -g -fdiagnostics-color=always
+  OBJECT_DIR = CMakeFiles\untitled.dir
+  OBJECT_FILE_DIR = CMakeFiles\untitled.dir
+
+build CMakeFiles/untitled.dir/b-ternary-3.c.obj: C_COMPILER__untitled_unscanned_Debug C$:/Users/26711/CLionProjects/Git_example/c_code/b-ternary-3.c || cmake_object_order_depends_target_untitled
+  DEP_FILE = CMakeFiles\untitled.dir\b-ternary-3.c.obj.d
+  FLAGS = -g -fdiagnostics-color=always
+  OBJECT_DIR = CMakeFiles\untitled.dir
+  OBJECT_FILE_DIR = CMakeFiles\untitled.dir
+
+build CMakeFiles/untitled.dir/palindrome-2.c.obj: C_COMPILER__untitled_unscanned_Debug C$:/Users/26711/CLionProjects/Git_example/c_code/palindrome-2.c || cmake_object_order_depends_target_untitled
+  DEP_FILE = CMakeFiles\untitled.dir\palindrome-2.c.obj.d
+  FLAGS = -g -fdiagnostics-color=always
+  OBJECT_DIR = CMakeFiles\untitled.dir
+  OBJECT_FILE_DIR = CMakeFiles\untitled.dir
+
+build CMakeFiles/untitled.dir/matrics.c.obj: C_COMPILER__untitled_unscanned_Debug C$:/Users/26711/CLionProjects/Git_example/c_code/matrics.c || cmake_object_order_depends_target_untitled
+  DEP_FILE = CMakeFiles\untitled.dir\matrics.c.obj.d
+  FLAGS = -g -fdiagnostics-color=always
+  OBJECT_DIR = CMakeFiles\untitled.dir
+  OBJECT_FILE_DIR = CMakeFiles\untitled.dir
+
+build CMakeFiles/untitled.dir/sudoku.c.obj: C_COMPILER__untitled_unscanned_Debug C$:/Users/26711/CLionProjects/Git_example/c_code/sudoku.c || cmake_object_order_depends_target_untitled
+  DEP_FILE = CMakeFiles\untitled.dir\sudoku.c.obj.d
+  FLAGS = -g -fdiagnostics-color=always
+  OBJECT_DIR = CMakeFiles\untitled.dir
+  OBJECT_FILE_DIR = CMakeFiles\untitled.dir
+
+build CMakeFiles/untitled.dir/matrix-mult.c.obj: C_COMPILER__untitled_unscanned_Debug C$:/Users/26711/CLionProjects/Git_example/c_code/matrix-mult.c || cmake_object_order_depends_target_untitled
+  DEP_FILE = CMakeFiles\untitled.dir\matrix-mult.c.obj.d
+  FLAGS = -g -fdiagnostics-color=always
+  OBJECT_DIR = CMakeFiles\untitled.dir
+  OBJECT_FILE_DIR = CMakeFiles\untitled.dir
+
+build CMakeFiles/untitled.dir/mine.c.obj: C_COMPILER__untitled_unscanned_Debug C$:/Users/26711/CLionProjects/Git_example/c_code/mine.c || cmake_object_order_depends_target_untitled
+  DEP_FILE = CMakeFiles\untitled.dir\mine.c.obj.d
+  FLAGS = -g -fdiagnostics-color=always
+  OBJECT_DIR = CMakeFiles\untitled.dir
+  OBJECT_FILE_DIR = CMakeFiles\untitled.dir
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target untitled
@@ -117,7 +195,7 @@ build CMakeFiles/untitled.dir/CMakeFiles/untitled.dir/equation.cpp.obj: CXX_COMP
 #############################################
 # Link the executable untitled.exe
 
-build untitled.exe: CXX_EXECUTABLE_LINKER__untitled_Debug CMakeFiles/untitled.dir/main.cpp.obj CMakeFiles/untitled.dir/guess_number.cpp.obj CMakeFiles/untitled.dir/compare.cpp.obj CMakeFiles/untitled.dir/aSCIii.cpp.obj CMakeFiles/untitled.dir/rmb.cpp.obj CMakeFiles/untitled.dir/PI.cpp.obj CMakeFiles/untitled.dir/days.cpp.obj CMakeFiles/untitled.dir/julian.cpp.obj CMakeFiles/untitled.dir/CMakeFiles/gravity.cpp.obj CMakeFiles/untitled.dir/CMakeFiles/untitled.dir/equation.cpp.obj
+build untitled.exe: CXX_EXECUTABLE_LINKER__untitled_Debug CMakeFiles/untitled.dir/main.cpp.obj CMakeFiles/untitled.dir/aSCIii.cpp.obj CMakeFiles/untitled.dir/CMakeFiles/gravity.cpp.obj CMakeFiles/untitled.dir/CMakeFiles/untitled.dir/equation.cpp.obj CMakeFiles/untitled.dir/factorial.c.obj CMakeFiles/untitled.dir/single.c.obj CMakeFiles/untitled.dir/series.c.obj CMakeFiles/untitled.dir/standup.c.obj CMakeFiles/untitled.dir/collatz.c.obj CMakeFiles/untitled.dir/inverse.c.obj CMakeFiles/untitled.dir/palindrome1.c.obj CMakeFiles/untitled.dir/flip.c.obj CMakeFiles/untitled.dir/b-ternary-1.c.obj CMakeFiles/untitled.dir/b-ternary-2.c.obj CMakeFiles/untitled.dir/jojo.c.obj CMakeFiles/untitled.dir/bubble.c.cpp.obj CMakeFiles/untitled.dir/binalise.c.obj CMakeFiles/untitled.dir/b-ternary-3.c.obj CMakeFiles/untitled.dir/palindrome-2.c.obj CMakeFiles/untitled.dir/matrics.c.obj CMakeFiles/untitled.dir/sudoku.c.obj CMakeFiles/untitled.dir/matrix-mult.c.obj CMakeFiles/untitled.dir/mine.c.obj
   FLAGS = -g
   LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\untitled.dir

@@ -28,5 +28,6 @@ add_executable(untitled main.cpp
         matrics.c
         sudoku.c
         matrix-mult.c
+        mine.c
 )
 
