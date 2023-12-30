@@ -1,0 +1,10 @@
+# ninja log v5
+620	2944	7184715590566557	CMakeFiles/untitled.dir/single.cpp.obj	ec8f85546a196fe4
+2	837	7189902049979639	CMakeFiles/untitled.dir/main.cpp.obj	b0c490084827dfa2
+1	311	7196524496919790	build.ninja	6fec2c0516191cbe
+445	597	7157705200154836	untitled.exe	4b86340c4d4dc72f
+577	3280	7184715593914522	CMakeFiles/untitled.dir/quine.cpp.obj	1b070ec75633511f
+451	1066	7189902054845685	CMakeFiles/untitled.dir/dh.cpp.obj	6bd13a0523b92f38
+1	719	7184715568304604	CMakeFiles/untitled.dir/guess_number.cpp.obj	3ad6a5ab03efe6cc
+304	866	7189902052841057	CMakeFiles/untitled.dir/collatz.c.obj	3fc1bcb19551bd5e
+542	2041	7189902064601960	CMakeFiles/untitled.dir/b-ternary-2.c.obj	f3ce9dbbc110a53a
