@@ -9,7 +9,7 @@ void homepage ()
 
     SDL_Rect Rec_Start_button={.x=438,.y=200};
     SDL_Rect Rec_Start_button_on={.x=438,.y=200};
-    SDL_Rect Rec_name_font={.x=360,.y=0};
+    SDL_Rect Rec_name_font={.x=360,.y=100};
     SDL_Rect Rec_font1={.x=536,.y=430};
     SDL_Rect Rec_font2={.x=536,.y=430};
     SDL_QueryTexture(Start_button_texture,NULL,NULL,&Rec_Start_button.w,&Rec_Start_button.h);
@@ -56,7 +56,10 @@ void homepage ()
                 running=false;
                 // end the program
             }
-            else if(start.button.x>=438&&start.button.x<=762&&start.button.y>=200&&start.button.y<=356)
+
+            // start button
+
+            else if(start.button.x>=462&&start.button.x<=742&&start.button.y>=216&&start.button.y<=338)
             {
                 on =true;
 
@@ -103,7 +106,7 @@ void homepage ()
                 if(rect_background2.x<=-1200)rect_background2.x=1200;
                 if(start.type==SDL_MOUSEBUTTONDOWN)
                 {
-                    if(speed==2)
+                    if(hardness==1)
                     {
                         //SDL_RenderClear(render1);
                         SDL_RenderCopy(render1, texture1, NULL, &rect_background1);
@@ -111,7 +114,8 @@ void homepage ()
                         SDL_RenderCopy(render1, name_font_texture, NULL, &Rec_name_font);
                         SDL_RenderCopy(render1, difficulty_font_texture2, NULL, &Rec_font1);
                         SDL_RenderPresent(render1);
-                        speed=5;
+                        speed=4;
+                        hardness=2;
                     }
                     else
                     {
@@ -122,6 +126,7 @@ void homepage ()
                         SDL_RenderCopy(render1, difficulty_font_texture1, NULL, &Rec_font1);
                         SDL_RenderPresent(render1);
                         speed=2;
+                        hardness=1;
                     }
                 }
             }
@@ -137,7 +142,7 @@ void homepage ()
                 if(rect_background1.x<=-1200)rect_background1.x=1200;
                 if(rect_background2.x<=-1200)rect_background2.x=1200;
 
-                if(speed==2)
+                if(hardness==1)
                 {
                     //SDL_RenderClear(render1);
                     SDL_RenderCopy(render1, texture1, NULL, &rect_background1);

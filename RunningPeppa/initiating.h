@@ -25,6 +25,7 @@ extern SDL_Surface* Start_button;
 extern SDL_Surface* Start_button_on;
 extern SDL_Surface* name_font;
 extern SDL_Surface* difficulty_font;
+extern SDL_Surface* obstacle;
 
 extern SDL_Renderer* render1;
 
@@ -40,6 +41,14 @@ extern SDL_Texture* peppa_kneel_texture;
 extern SDL_Texture* name_font_texture;
 extern SDL_Texture* difficulty_font_texture1;
 extern SDL_Texture* difficulty_font_texture2;
+extern SDL_Texture* obstacle1_texture;
+extern SDL_Texture* obstacle2_texture;
+extern SDL_Texture* obstacle3_texture;
+extern SDL_Texture* obstacle4_texture;
+extern SDL_Texture* obstacle5_texture;
+extern SDL_Texture* obstacle6_texture;
+extern SDL_Texture* obstacle7_texture;
+
 
 extern SDL_Rect rect_background1;
 extern SDL_Rect rect_background2;
@@ -54,4 +63,5 @@ extern bool keyIsPressed;
 extern int life;
 extern int lr;
 extern int speed;
+
 #endif //RUNNINGPEPPA_INITIATING_H

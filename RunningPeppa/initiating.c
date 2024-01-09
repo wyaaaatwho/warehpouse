@@ -70,6 +70,22 @@ int initiation ()
             peppa_shoot_texture=SDL_CreateTextureFromSurface(render1, peppa_shoot);
             peppa_kneel_texture=SDL_CreateTextureFromSurface(render1, peppa_kneel);
 
+            //initiating obstacle
+            obstacle=IMG_Load("./resource/monster_1.png");
+            obstacle1_texture= SDL_CreateTextureFromSurface(render1,obstacle);
+            obstacle=IMG_Load("./resource/monster_2.png");
+            obstacle2_texture= SDL_CreateTextureFromSurface(render1,obstacle);
+            obstacle=IMG_Load("./resource/flying_eye.png");
+            obstacle3_texture= SDL_CreateTextureFromSurface(render1,obstacle);
+            obstacle=IMG_Load("./resource/monster_3.png");
+            obstacle4_texture= SDL_CreateTextureFromSurface(render1,obstacle);
+            obstacle=IMG_Load("./resource/monster_5.png");
+            obstacle5_texture= SDL_CreateTextureFromSurface(render1,obstacle);
+            obstacle=IMG_Load("./resource/monster_6.png");
+            obstacle6_texture= SDL_CreateTextureFromSurface(render1,obstacle);
+            obstacle=IMG_Load("./resource/monster_7.png");
+            obstacle7_texture= SDL_CreateTextureFromSurface(render1,obstacle);
+
             SDL_FreeSurface(backGround1);
             SDL_FreeSurface(backGround2);
             SDL_FreeSurface(Start_button);
