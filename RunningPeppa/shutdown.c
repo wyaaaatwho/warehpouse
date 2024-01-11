@@ -10,6 +10,20 @@ void  shutdown()
     SDL_DestroyWindow(window);
     SDL_DestroyRenderer(render1);
 
+    // destroy surface
+    SDL_FreeSurface(backGround1);
+    SDL_FreeSurface(backGround2);
+    SDL_FreeSurface(Start_button);
+    SDL_FreeSurface(Start_button_on);
+    SDL_FreeSurface(peppa);
+    SDL_FreeSurface(peppa_left);
+    SDL_FreeSurface(peppa_right);
+    SDL_FreeSurface(peppa_shoot);
+    SDL_FreeSurface(peppa_kneel);
+    SDL_FreeSurface(name_font);
+    SDL_FreeSurface(difficulty_font);
+
+    // destroy texture
     SDL_DestroyTexture(Start_button_texture);
     Start_button_texture = NULL;
 

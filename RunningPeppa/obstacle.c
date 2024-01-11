@@ -3,190 +3,219 @@
 //
 
 #include "obstacle.h"
+#include <stdbool.h>
 
-/*int min(int a, int b) {
-    return a < b ? a : b;
-}
+bool collide(SDL_Rect *rect1) {
+    int errorMargin = 10;  // allow a certain error
 
-Uint32 getPixel(SDL_Surface* surface, int x, int y) {
-    int bpp = surface->format->BytesPerPixel;
-    Uint8* p = (Uint8*)surface->pixels + y * surface->pitch + x * bpp;
-
-    switch (bpp) {
-        case 1:
-            return *p;
-        case 2:
-            return *(Uint16*)p;
-        case 3:
-            if (SDL_BYTEORDER == SDL_BIG_ENDIAN)
-                return p[0] << 16 | p[1] << 8 | p[2];
-            else
-                return p[0] | p[1] << 8 | p[2] << 16;
-        case 4:
-            return *(Uint32*)p;
-        default:
-            return 0;
+    if (isPeppaKneel) {
+        return (
+                rect1->x < rect_peppa_kneel.x + rect_peppa_kneel.w &&
+                rect1->x + rect1->w > rect_peppa_kneel.x &&
+                rect1->y < rect_peppa_kneel.y + rect_peppa_kneel.h &&
+                rect1->y + rect1->h > rect_peppa_kneel.y &&
+                (rect1->x + rect1->w - errorMargin) > rect_peppa_kneel.x &&
+                (rect_peppa_kneel.x + rect_peppa_kneel.w - errorMargin) > rect1->x &&
+                (rect1->y + rect1->h - errorMargin) > rect_peppa_kneel.y &&
+                (rect_peppa_kneel.y + rect_peppa_kneel.h - errorMargin) > rect1->y
+        );
+    } else {
+        return (
+                rect1->x < rect_peppa.x + rect_peppa.w &&
+                rect1->x + rect1->w > rect_peppa.x &&
+                rect1->y < rect_peppa.y + rect_peppa.h &&
+                rect1->y + rect1->h > rect_peppa.y &&
+                (rect1->x + rect1->w - errorMargin) > rect_peppa.x &&
+                (rect_peppa.x + rect_peppa.w - errorMargin) > rect1->x &&
+                (rect1->y + rect1->h - errorMargin) > rect_peppa.y &&
+                (rect_peppa.y + rect_peppa.h - errorMargin) > rect1->y
+        );
     }
 }
 
-int checkPixelCollision(SDL_Rect a, SDL_Texture* textureA, SDL_Rect b, SDL_Texture* textureB, SDL_Renderer* renderer) {
-    // Create surfaces from textures
-    SDL_Surface* surfaceA = SDL_CreateRGBSurface(0, a.w, a.h, 32, 0, 0, 0, 0);
-    SDL_Surface* surfaceB = SDL_CreateRGBSurface(0, b.w, b.h, 32, 0, 0, 0, 0);
+void obstacleInit(SDL_Rect *obstacleArgue,int *num,int index)
+{
+    obstacleArgue->x-=speed;
+    if (collide(obstacleArgue))
+    {
+        *num = 0;
+        peppaHurt=1;
+        isHurt=0;
+        obstacleArgue->x = 1200;
+        life--;
+    }
+    if((index==1||index==2||index==5||index==6)&&destroyObstacle(obstacleArgue))
+    {
+        *num = 0;
+        obstacleArgue->x = 1200;
+    }
+    if(obstacleArgue->x<=-200)
+    {
+        *num=0;
+        obstacleArgue->x=1200;
+    }
+}
 
-    SDL_RenderReadPixels(renderer, &a, surfaceA->format->format, surfaceA->pixels, surfaceA->pitch);
-    SDL_RenderReadPixels(renderer, &b, surfaceB->format->format, surfaceB->pixels, surfaceB->pitch);
+void rewardInit(SDL_Rect *rewardArgue,int *num,int index)
+{
+    rewardArgue->x-=speed;
+    if (collide(rewardArgue))
+    {
+        *num = 0;
+        if(index==1)
+        {
+            life++;
+        }
+        else if(index==2)
+        {
+            lana++;
+        }
+        rewardArgue->x = 1200;
+    }
+    if(rewardArgue->x<=-200)
+    {
+        *num=0;
+        rewardArgue->x=1200;
+    }
+}
 
-    int y, x;
-    for (y = 0; y < min(a.h, b.h); y++) {
-        for (x = 0; x < min(a.w, b.w); x++) {
-            Uint32 pixelA = getPixel(surfaceA, x, y);
-            Uint32 pixelB = getPixel(surfaceB, x, y);
+void obstacleMove()
+{
+    if(isObstacle1)
+    {
+        obstacleInit(&rect_obstacle1,&isObstacle1,1);
+    }
+    if(isObstacle2)
+    {
+        obstacleInit(&rect_obstacle2,&isObstacle2,2);
+    }
+    if(isObstacle3)
+    {
+        obstacleInit(&rect_obstacle3,&isObstacle3,3);
+    }
+    if(isObstacle4)
+    {
+        obstacleInit(&rect_obstacle4,&isObstacle4,4);
+    }
+    if(isObstacle5)
+    {
+        obstacleInit(&rect_obstacle5,&isObstacle5,5);
+    }
+    if(isObstacle6)
+    {
+        obstacleInit(&rect_obstacle6,&isObstacle6,6);
+    }
+    if(isObstacle7)
+    {
+        obstacleInit(&rect_obstacle7,&isObstacle7,7);
+    }
+    if(generateReward1)
+    {
+        rewardInit(&rect_reward1,&generateReward1,1);
+    }
+    if(generateReward2)
+    {
+        rewardInit(&rect_reward2,&generateReward2,2);
+    }
+    SDL_RenderCopy(render1,obstacle1_texture,NULL,&rect_obstacle1);
+    SDL_RenderCopy(render1,obstacle2_texture,NULL,&rect_obstacle2);
+    SDL_RenderCopy(render1,obstacle3_texture,NULL,&rect_obstacle3);
+    SDL_RenderCopy(render1,obstacle4_texture,NULL,&rect_obstacle4);
+    SDL_RenderCopy(render1,obstacle5_texture,NULL,&rect_obstacle5);
+    SDL_RenderCopy(render1,obstacle6_texture,NULL,&rect_obstacle6);
+    SDL_RenderCopy(render1,obstacle7_texture,NULL,&rect_obstacle7);
+    SDL_RenderCopy(render1,reward1_texture,NULL,&rect_reward1);
+    SDL_RenderCopy(render1,reward2_texture,NULL,&rect_reward2);
 
-            if (pixelA != SDL_MapRGB(surfaceA->format, 0, 0, 0) && pixelB != SDL_MapRGB(surfaceB->format, 0, 0, 0)) {
-                // Collision detected
-                SDL_FreeSurface(surfaceA);
-                SDL_FreeSurface(surfaceB);
-                return 1;
-            }
+    if(generate==0)
+    {
+        int generate_obstacle = rand()%10+1;
+        if (generate_obstacle==1 && !isObstacle1 ) isObstacle1 = 1;
+        if (generate_obstacle==2 && !isObstacle2 ) isObstacle2 = 1;
+        if (generate_obstacle==3 && !isObstacle3 ) isObstacle3 = 1;
+        if (generate_obstacle==4 && !isObstacle4 ) isObstacle4 = 1;
+        if (generate_obstacle==5 && !isObstacle5 ) isObstacle5 = 1;
+        if (generate_obstacle==6 && !isObstacle6 ) isObstacle6 = 1;
+        if (generate_obstacle==7 && !isObstacle7 ) isObstacle7 = 1;
+        if(generateRewardFrequency==0)
+        {
+            if (generate_obstacle==8&&!generateReward1) generateReward1= 1;
+            if (generate_obstacle==9&&!generateReward2) generateReward2= 1;
         }
     }
-
-    SDL_FreeSurface(surfaceA);
-    SDL_FreeSurface(surfaceB);
-    return 0;
-}*/
-
-void obstacle1Init(SDL_Rect *obstacleArgue)
-{
-    obstacleArgue->x-=speed;
-    if (obstacleArgue->x <= 280 &&
-        ((rect_peppa.y + rect_peppa.h >= obstacleArgue->y) &&
-         (obstacleArgue->x + obstacleArgue->w >= rect_peppa.x) &&
-         (rect_peppa.y <= obstacleArgue->y + obstacleArgue->h)))
-    {
-        isObstacle1=0;for(int i=0;i<3;i++)SDL_Delay(1000);
-        obstacleArgue->x=1200;
-        life--;
+    generate++;
+    if(generate==500/(hardness)){
+        generate=0;
     }
-    if(obstacleArgue->x<=-200)
-    {
-        isObstacle1=0;
-        obstacleArgue->x=1200;
+    
+    generateRewardFrequency++;
+    if(generateRewardFrequency==1000){
+        generateRewardFrequency=0;
     }
 }
 
-void obstacle2Init(SDL_Rect *obstacleArgue)
+void attackMove()
 {
-    obstacleArgue->x-=speed;
-    if (obstacleArgue->x <= 280&&
-        ((rect_peppa.y + rect_peppa.h >= obstacleArgue->y) &&
-         (obstacleArgue->x + obstacleArgue->w >= rect_peppa.x) &&
-         (rect_peppa.y <= obstacleArgue->y + obstacleArgue->h)))
+    if(bullet1out)
     {
-        isObstacle2=0;for(int i=0;i<3;i++)SDL_Delay(1000);
-        obstacleArgue->x=1200;
-        life--;
+        rect_bullet1.x+=5;
+        SDL_RenderCopy(render1,bullet_texture1,NULL,&rect_bullet1);
+        if(rect_bullet1.x>=1200)
+        {
+            rect_bullet1.x=230;
+            bullet1out=0;
+        }
     }
-    if(obstacleArgue->x<=-200)
+    if(bullet2out)
     {
-        isObstacle2=0;
-        obstacleArgue->x=1200;
+        rect_bullet2.x+=5;
+        SDL_RenderCopy(render1,bullet_texture2,NULL,&rect_bullet2);
+        if(rect_bullet2.x>=1200)
+        {
+            rect_bullet2.x=230;
+            bullet2out=0;
+        }
+    }
+    if(bullet3out)
+    {
+        rect_bullet3.x+=5;
+        SDL_RenderCopy(render1,bullet_texture3,NULL,&rect_bullet3);
+        if(rect_bullet3.x>=1200)
+        {
+            rect_bullet3.x=230;
+            bullet3out=0;
+        }
     }
 }
 
-void obstacle3Init(SDL_Rect *obstacleArgue)
+bool destroyObstacle(SDL_Rect *rect1)
 {
-    obstacleArgue->x-=speed;
-    if (obstacleArgue->x <= 280 &&
-        ((rect_peppa.y + rect_peppa.h >= obstacleArgue->y) &&
-         (obstacleArgue->x + obstacleArgue->w >= rect_peppa.x) &&
-         (rect_peppa.y <= obstacleArgue->y + obstacleArgue->h)))
+    if(bullet1out)
     {
-        isObstacle3=0;for(int i=0;i<3;i++)SDL_Delay(1000);
-        obstacleArgue->x=1200;
-        life--;
+        if(rect_bullet1.x+rect_bullet1.w>=rect1->x)
+        {
+            bullet1out=0;
+            rect_bullet1.x=230;
+            return true;
+        }
     }
-    if(obstacleArgue->x<=-200)
+    if(bullet2out)
     {
-        isObstacle3=0;
-        obstacleArgue->x=1200;
+        if(rect_bullet2.x+rect_bullet2.w>=rect1->x)
+        {
+            bullet2out=0;
+            rect_bullet2.x=230;
+            return true;
+        }
     }
+    if(bullet3out)
+    {
+        if(rect_bullet3.x+rect_bullet3.w>=rect1->x)
+        {
+            bullet3out=0;
+            rect_bullet3.x=230;
+            return true;
+        }
+    }
+    return false;
 }
-
-void obstacle4Init(SDL_Rect *obstacleArgue)
-{
-    obstacleArgue->x-=speed;
-    if (obstacleArgue->x <= 280 &&
-        ((rect_peppa.y + rect_peppa.h >= obstacleArgue->y) &&
-         (obstacleArgue->x + obstacleArgue->w >= rect_peppa.x) &&
-         (rect_peppa.y <= obstacleArgue->y + obstacleArgue->h)))
-    {
-        isObstacle4=0;for(int i=0;i<3;i++)SDL_Delay(1000);
-        obstacleArgue->x=1200;
-        life--;
-    }
-    if(obstacleArgue->x<=-200)
-    {
-        isObstacle4=0;
-        obstacleArgue->x=1200;
-    }
-}
-
-void obstacle5Init(SDL_Rect *obstacleArgue)
-{
-    obstacleArgue->x-=speed;
-    if (obstacleArgue->x <= 280 &&
-        ((rect_peppa.y + rect_peppa.h >= obstacleArgue->y) &&
-         (obstacleArgue->x + obstacleArgue->w >= rect_peppa.x) &&
-         (rect_peppa.y <= obstacleArgue->y + obstacleArgue->h)))
-    {
-        isObstacle5=0;for(int i=0;i<3;i++)SDL_Delay(1000);
-        obstacleArgue->x=1200;
-        life--;
-    }
-    if(obstacleArgue->x<=-600)
-    {
-        isObstacle5=0;
-        obstacleArgue->x=1200;
-    }
-}
-
-void obstacle6Init(SDL_Rect *obstacleArgue)
-{
-    obstacleArgue->x-=speed;
-    if (obstacleArgue->x <= 280 &&
-        ((rect_peppa.y + rect_peppa.h >= obstacleArgue->y) &&
-         (obstacleArgue->x + obstacleArgue->w >= rect_peppa.x) &&
-         (rect_peppa.y <= obstacleArgue->y + obstacleArgue->h)))
-    {
-        isObstacle6=0;for(int i=0;i<3;i++)SDL_Delay(1000);
-        obstacleArgue->x=1200;
-        life--;
-    }
-    if(obstacleArgue->x<=-200)
-    {
-        isObstacle6=0;
-        obstacleArgue->x=1200;
-    }
-}
-
-void obstacle7Init(SDL_Rect *obstacleArgue)
-{
-    obstacleArgue->x-=speed;
-    if (obstacleArgue->x <= 280 &&
-        ((rect_peppa.y + rect_peppa.h >= obstacleArgue->y) &&
-         (obstacleArgue->x + obstacleArgue->w >= rect_peppa.x) &&
-         (rect_peppa.y <= obstacleArgue->y + obstacleArgue->h)))
-    {
-        isObstacle7=0;for(int i=0;i<3;i++)SDL_Delay(1000);
-        obstacleArgue->x=1200;
-        life--;
-    }
-    if(obstacleArgue->x<=-200)
-    {
-        isObstacle7=0;
-        obstacleArgue->x=1200;
-    }
-}
-

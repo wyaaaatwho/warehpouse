@@ -1,4 +1,5 @@
 #include "header.h"
+#include "status.h"
 
 int main(int argc, char *argv[])
 {
@@ -16,19 +17,10 @@ int main(int argc, char *argv[])
 
     //loading peppa
     SDL_QueryTexture(peppa_texture, NULL, NULL, &rect_peppa.w, &rect_peppa.h);
+    SDL_QueryTexture(peppa_kneel_texture, NULL, NULL, &rect_peppa_kneel.w, &rect_peppa_kneel.h);
     SDL_QueryTexture(peppa_left_texture, NULL, NULL, &rect_peppa_left.w, &rect_peppa_left.h);
     SDL_QueryTexture(peppa_right_texture, NULL, NULL, &rect_peppa_right.w, &rect_peppa_right.h);
     SDL_QueryTexture(peppa_shoot_texture, NULL, NULL, &rect_peppa_shoot.w, &rect_peppa_shoot.h);
-
-    //loading obstacle
-
-    SDL_QueryTexture(obstacle1_texture, NULL, NULL, &rect_obstacle1.w, &rect_obstacle1.h);
-    SDL_QueryTexture(obstacle2_texture, NULL, NULL, &rect_obstacle2.w, &rect_obstacle2.h);
-    SDL_QueryTexture(obstacle3_texture, NULL, NULL, &rect_obstacle3.w, &rect_obstacle3.h);
-    SDL_QueryTexture(obstacle4_texture, NULL, NULL, &rect_obstacle4.w, &rect_obstacle4.h);
-    SDL_QueryTexture(obstacle5_texture, NULL, NULL, &rect_obstacle5.w, &rect_obstacle5.h);
-    SDL_QueryTexture(obstacle6_texture, NULL, NULL, &rect_obstacle6.w, &rect_obstacle6.h);
-    SDL_QueryTexture(obstacle7_texture, NULL, NULL, &rect_obstacle7.w, &rect_obstacle7.h);
 
     homepage();
     //initiating homepage
@@ -70,55 +62,42 @@ int main(int argc, char *argv[])
         SDL_RenderCopy(render1,texture1,NULL,&rect_background1);
         SDL_RenderCopy(render1,texture2,NULL,&rect_background2);
 
-        if(lr<=30)
-        {
-            SDL_RenderCopy(render1,peppa_left_texture,NULL,&rect_peppa_left);
-        }
-        else
-        {
-            SDL_RenderCopy(render1,peppa_right_texture,NULL,&rect_peppa_right);
+        if(!peppaHurt) {
+            if (lr <= 30 && !peppaHurt) {
+                SDL_RenderCopy(render1, peppa_left_texture, NULL, &rect_peppa_left);
+            } else if (lr >= 30 && !peppaHurt) {
+                SDL_RenderCopy(render1, peppa_right_texture, NULL, &rect_peppa_right);
 
-        }
-        lr++;
-        if(lr==60)lr=0;//moving peppa
-
-        if(isObstacle1)
-        {
-            obstacle1Init(&rect_obstacle1);
-        }
-        if(isObstacle2)
-        {
-            obstacle2Init(&rect_obstacle2);
-        }
-        if(isObstacle3)
-        {
-            obstacle3Init(&rect_obstacle3);
-        }
-        if(isObstacle4)
-        {
-            obstacle4Init(&rect_obstacle4);
-        }
-        if(isObstacle5)
-        {
-            obstacle5Init(&rect_obstacle5);
-        }
-        if(isObstacle6)
-        {
-            obstacle6Init(&rect_obstacle6);
-        }
-        if(isObstacle7)
-        {
-            obstacle7Init(&rect_obstacle7);
+            }
+            lr++;
+            if(lr==60)lr=0;//moving peppa
         }
 
-        SDL_RenderCopy(render1,obstacle1_texture,NULL,&rect_obstacle1);
-        SDL_RenderCopy(render1,obstacle2_texture,NULL,&rect_obstacle2);
-        SDL_RenderCopy(render1,obstacle3_texture,NULL,&rect_obstacle3);
-        SDL_RenderCopy(render1,obstacle4_texture,NULL,&rect_obstacle4);
-        SDL_RenderCopy(render1,obstacle5_texture,NULL,&rect_obstacle5);
-        SDL_RenderCopy(render1,obstacle6_texture,NULL,&rect_obstacle6);
-        SDL_RenderCopy(render1,obstacle7_texture,NULL,&rect_obstacle7);
+        if(peppaHurt)
+        {
+            if(lr<=30&&isHurt%2==0)
+            {
+                SDL_RenderCopy(render1,peppa_left_texture,NULL,&rect_peppa_left);
+            }
+            else if(lr>30&&isHurt%2==0)
+            {
+                SDL_RenderCopy(render1,peppa_right_texture,NULL,&rect_peppa_right);
+            }
+            lr++;
+            isHurt++;
+            if(lr==60)lr=0;
+            if(isHurt==500)
+            {
+                isHurt=0;
+                peppaHurt=0;
+            }
+        } //moving peppa
 
+        obstacleMove(); // obstacle
+
+        statusDisplay();// status bar
+
+        attackMove();// bullet fly
 
         SDL_RenderPresent(render1);
         SDL_RenderClear(render1);
@@ -128,21 +107,6 @@ int main(int argc, char *argv[])
         if(rect_background1.x<=-1200)rect_background1.x=1200;
         if(rect_background2.x<=-1200)rect_background2.x=1200;
 
-        if(generate==0)
-        {
-            int generate_obstacle = rand()%10+1;
-            if (generate_obstacle==1 && !isObstacle1 ) isObstacle1 = 1;
-            if (generate_obstacle==2 && !isObstacle2 ) isObstacle2 = 1;
-            if (generate_obstacle==3 && !isObstacle3 ) isObstacle3 = 1;
-            if (generate_obstacle==4 && !isObstacle4 ) isObstacle4 = 1;
-            if (generate_obstacle==5 && !isObstacle5 ) isObstacle5 = 1;
-            if (generate_obstacle==6 && !isObstacle6 ) isObstacle6 = 1;
-            if (generate_obstacle==7 && !isObstacle7 ) isObstacle7 = 1;
-        }
-        generate++;
-        if(generate==500/hardness){
-            generate=0;
-        }
         // decide obstacles
 
         SDL_Delay(2);

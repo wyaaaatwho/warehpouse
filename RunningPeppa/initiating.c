@@ -71,34 +71,70 @@ int initiation ()
             peppa_kneel_texture=SDL_CreateTextureFromSurface(render1, peppa_kneel);
 
             //initiating obstacle
-            obstacle=IMG_Load("./resource/monster_1.png");
-            obstacle1_texture= SDL_CreateTextureFromSurface(render1,obstacle);
-            obstacle=IMG_Load("./resource/monster_2.png");
-            obstacle2_texture= SDL_CreateTextureFromSurface(render1,obstacle);
-            obstacle=IMG_Load("./resource/flying_eye.png");
-            obstacle3_texture= SDL_CreateTextureFromSurface(render1,obstacle);
-            obstacle=IMG_Load("./resource/monster_3.png");
-            obstacle4_texture= SDL_CreateTextureFromSurface(render1,obstacle);
-            obstacle=IMG_Load("./resource/monster_5.png");
-            obstacle5_texture= SDL_CreateTextureFromSurface(render1,obstacle);
-            obstacle=IMG_Load("./resource/monster_6.png");
-            obstacle6_texture= SDL_CreateTextureFromSurface(render1,obstacle);
-            obstacle=IMG_Load("./resource/monster_7.png");
-            obstacle7_texture= SDL_CreateTextureFromSurface(render1,obstacle);
+            obstacle1=IMG_Load("./resource/monster_1.png");
+            obstacle1_texture= SDL_CreateTextureFromSurface(render1,obstacle1);
+            obstacle2=IMG_Load("./resource/monster_2.png");
+            obstacle2_texture= SDL_CreateTextureFromSurface(render1,obstacle2);
+            obstacle3=IMG_Load("./resource/flying_eye.png");
+            obstacle3_texture= SDL_CreateTextureFromSurface(render1,obstacle3);
+            obstacle4=IMG_Load("./resource/monster_3.png");
+            obstacle4_texture= SDL_CreateTextureFromSurface(render1,obstacle4);
+            obstacle5=IMG_Load("./resource/monster_5.png");
+            obstacle5_texture= SDL_CreateTextureFromSurface(render1,obstacle5);
+            obstacle6=IMG_Load("./resource/monster_6.png");
+            obstacle6_texture= SDL_CreateTextureFromSurface(render1,obstacle6);
+            obstacle7=IMG_Load("./resource/monster_7.png");
+            obstacle7_texture= SDL_CreateTextureFromSurface(render1,obstacle7);
 
-            SDL_FreeSurface(backGround1);
-            SDL_FreeSurface(backGround2);
-            SDL_FreeSurface(Start_button);
-            SDL_FreeSurface(Start_button_on);
-            SDL_FreeSurface(peppa);
-            SDL_FreeSurface(peppa_left);
-            SDL_FreeSurface(peppa_right);
-            SDL_FreeSurface(peppa_shoot);
-            SDL_FreeSurface(peppa_kneel);
-            SDL_FreeSurface(name_font);
-            SDL_FreeSurface(difficulty_font);
+            //loading obstacle
+            SDL_QueryTexture(obstacle1_texture, NULL, NULL, &rect_obstacle1.w, &rect_obstacle1.h);
+            SDL_QueryTexture(obstacle2_texture, NULL, NULL, &rect_obstacle2.w, &rect_obstacle2.h);
+            SDL_QueryTexture(obstacle3_texture, NULL, NULL, &rect_obstacle3.w, &rect_obstacle3.h);
+            SDL_QueryTexture(obstacle4_texture, NULL, NULL, &rect_obstacle4.w, &rect_obstacle4.h);
+            SDL_QueryTexture(obstacle5_texture, NULL, NULL, &rect_obstacle5.w, &rect_obstacle5.h);
+            SDL_QueryTexture(obstacle6_texture, NULL, NULL, &rect_obstacle6.w, &rect_obstacle6.h);
+            SDL_QueryTexture(obstacle7_texture, NULL, NULL, &rect_obstacle7.w, &rect_obstacle7.h);
 
+
+            //initiating status bar
+            lifeBar= IMG_Load("./resource/hearts_3.png");
+            lifeBar1_texture= SDL_CreateTextureFromSurface(render1,lifeBar);
+            lifeBar= IMG_Load("./resource/hearts_2.png");
+            lifeBar2_texture= SDL_CreateTextureFromSurface(render1,lifeBar);
+            lifeBar= IMG_Load("./resource/hearts_1.png");
+            lifeBar3_texture= SDL_CreateTextureFromSurface(render1,lifeBar);
+            lifeBar= IMG_Load("./resource/hearts_0.png");
+            lifeBar4_texture= SDL_CreateTextureFromSurface(render1,lifeBar);
+            lanaBar= IMG_Load("./resource/lana.png");
+            lanaBar_texture= SDL_CreateTextureFromSurface(render1,lanaBar);
+
+            sprintf(buffer, "X %d", lana);
+            lanaFont= TTF_RenderText_Blended(font, buffer, font_color1);
+            lanaFont_texture= SDL_CreateTextureFromSurface(render1,difficulty_font);
+
+            // loading status bar
+            SDL_QueryTexture(lifeBar1_texture,NULL,NULL,&rect_lifeBar.w,&rect_lifeBar.h);
+            SDL_QueryTexture(lanaBar_texture,NULL,NULL,&rect_lanaBar.w,&rect_lanaBar.h);
+            SDL_QueryTexture(lanaFont_texture,NULL,NULL,&rect_lanaBar_font.w,&rect_lanaBar_font.h);
+
+            // initiating rewards
+            reward1 = IMG_Load("./resource/heart.png");
+            reward2 = IMG_Load("./resource/lana.png");
+            reward1_texture= SDL_CreateTextureFromSurface(render1,reward1);
+            reward2_texture= SDL_CreateTextureFromSurface(render1,reward2);
+            SDL_QueryTexture(reward1_texture,NULL,NULL,&rect_reward1.w,&rect_reward1.h);
+            SDL_QueryTexture(reward2_texture,NULL,NULL,&rect_reward2.w,&rect_reward2.h);
+
+            // initiating bullet
+            bullet = IMG_Load("./resource/flying_bullet1.png");
+            bullet_texture1=SDL_CreateTextureFromSurface(render1,bullet);
+            bullet_texture2=SDL_CreateTextureFromSurface(render1,bullet);
+            bullet_texture3=SDL_CreateTextureFromSurface(render1,bullet);
+            SDL_QueryTexture(bullet_texture1,NULL,NULL,&rect_bullet1.w,&rect_bullet1.h);
+            SDL_QueryTexture(bullet_texture2,NULL,NULL,&rect_bullet2.w,&rect_bullet2.h);
+            SDL_QueryTexture(bullet_texture3,NULL,NULL,&rect_bullet3.w,&rect_bullet3.h);
         }
+
     }  // initiating
     return 0;
 }

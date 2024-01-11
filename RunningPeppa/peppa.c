@@ -3,6 +3,7 @@
 //
 
 #include "peppa.h"
+#include "status.h"
 
 void pigpeppa(SDL_Rect *peppaArgue,SDL_Event *peppaMove)
 {
@@ -13,58 +14,22 @@ void pigpeppa(SDL_Rect *peppaArgue,SDL_Event *peppaMove)
             (*peppaArgue).y-=(2+y/100);
             SDL_RenderCopy(render1,texture1,NULL,&rect_background1);
             SDL_RenderCopy(render1,texture2,NULL,&rect_background2);
-            SDL_RenderCopy(render1,peppa_texture,NULL,peppaArgue);
+            if(peppaHurt)
+            {
+                if(isHurt%2==0)
+                    SDL_RenderCopy(render1,peppa_texture,NULL,peppaArgue);
+                isHurt++;
+                if(isHurt==500)
+                {
+                    isHurt=0;
+                    peppaHurt=0;
+                }
+            }
+            else SDL_RenderCopy(render1,peppa_texture,NULL,peppaArgue);
 
-            if(isObstacle1)
-            {
-                obstacle1Init(&rect_obstacle1);
-            }
-            if(isObstacle2)
-            {
-                obstacle2Init(&rect_obstacle2);
-            }
-            if(isObstacle3)
-            {
-                obstacle3Init(&rect_obstacle3);
-            }
-            if(isObstacle4)
-            {
-                obstacle4Init(&rect_obstacle4);
-            }
-            if(isObstacle5)
-            {
-                obstacle5Init(&rect_obstacle5);
-            }
-            if(isObstacle6)
-            {
-                obstacle6Init(&rect_obstacle6);
-            }
-            if(isObstacle7)
-            {
-                obstacle7Init(&rect_obstacle7);
-            }
-            SDL_RenderCopy(render1,obstacle1_texture,NULL,&rect_obstacle1);
-            SDL_RenderCopy(render1,obstacle2_texture,NULL,&rect_obstacle2);
-            SDL_RenderCopy(render1,obstacle3_texture,NULL,&rect_obstacle3);
-            SDL_RenderCopy(render1,obstacle4_texture,NULL,&rect_obstacle4);
-            SDL_RenderCopy(render1,obstacle5_texture,NULL,&rect_obstacle5);
-            SDL_RenderCopy(render1,obstacle6_texture,NULL,&rect_obstacle6);
-            SDL_RenderCopy(render1,obstacle7_texture,NULL,&rect_obstacle7);
-            if(generate==0)
-            {
-                int generate_obstacle = rand()%10+1;
-                if (generate_obstacle==1 && !isObstacle1 ) isObstacle1 = 1;
-                if (generate_obstacle==2 && !isObstacle2 ) isObstacle2 = 1;
-                if (generate_obstacle==3 && !isObstacle3 ) isObstacle3 = 1;
-                if (generate_obstacle==4 && !isObstacle4 ) isObstacle4 = 1;
-                if (generate_obstacle==5 && !isObstacle5 ) isObstacle5 = 1;
-                if (generate_obstacle==6 && !isObstacle6 ) isObstacle6 = 1;
-                if (generate_obstacle==7 && !isObstacle7 ) isObstacle7 = 1;
-            }
-            generate++;
-            if(generate==500/hardness){
-                generate=0;
-            }
+            obstacleMove();
+            statusDisplay();// status bar
+            attackMove();
 
             SDL_RenderPresent(render1);
             SDL_RenderClear(render1);
@@ -79,59 +44,21 @@ void pigpeppa(SDL_Rect *peppaArgue,SDL_Event *peppaMove)
         {
             SDL_RenderCopy(render1,texture1,NULL,&rect_background1);
             SDL_RenderCopy(render1,texture2,NULL,&rect_background2);
-            SDL_RenderCopy(render1,peppa_texture,NULL,peppaArgue);
+            if(peppaHurt)
+            {
+                if(isHurt%2==0)
+                    SDL_RenderCopy(render1,peppa_texture,NULL,peppaArgue);
+                isHurt++;if(isHurt==500)
+                {
+                    isHurt=0;
+                    peppaHurt=0;
+                }
+            }
+            else SDL_RenderCopy(render1,peppa_texture,NULL,peppaArgue);
 
-            //obstacle
-            if(isObstacle1)
-            {
-                obstacle1Init(&rect_obstacle1);
-            }
-            if(isObstacle2)
-            {
-                obstacle2Init(&rect_obstacle2);
-            }
-            if(isObstacle3)
-            {
-                obstacle3Init(&rect_obstacle3);
-            }
-            if(isObstacle4)
-            {
-                obstacle4Init(&rect_obstacle4);
-            }
-            if(isObstacle5)
-            {
-                obstacle5Init(&rect_obstacle5);
-            }
-            if(isObstacle6)
-            {
-                obstacle6Init(&rect_obstacle6);
-            }
-            if(isObstacle7)
-            {
-                obstacle7Init(&rect_obstacle7);
-            }
-            SDL_RenderCopy(render1,obstacle1_texture,NULL,&rect_obstacle1);
-            SDL_RenderCopy(render1,obstacle2_texture,NULL,&rect_obstacle2);
-            SDL_RenderCopy(render1,obstacle3_texture,NULL,&rect_obstacle3);
-            SDL_RenderCopy(render1,obstacle4_texture,NULL,&rect_obstacle4);
-            SDL_RenderCopy(render1,obstacle5_texture,NULL,&rect_obstacle5);
-            SDL_RenderCopy(render1,obstacle6_texture,NULL,&rect_obstacle6);
-            SDL_RenderCopy(render1,obstacle7_texture,NULL,&rect_obstacle7);
-            if(generate==0)
-            {
-                int generate_obstacle = rand()%10+1;
-                if (generate_obstacle==1 && !isObstacle1 ) isObstacle1 = 1;
-                if (generate_obstacle==2 && !isObstacle2 ) isObstacle2 = 1;
-                if (generate_obstacle==3 && !isObstacle3 ) isObstacle3 = 1;
-                if (generate_obstacle==4 && !isObstacle4 ) isObstacle4 = 1;
-                if (generate_obstacle==5 && !isObstacle5 ) isObstacle5 = 1;
-                if (generate_obstacle==6 && !isObstacle6 ) isObstacle6 = 1;
-                if (generate_obstacle==7 && !isObstacle7 ) isObstacle7 = 1;
-            }
-            generate++;
-            if(generate==500/hardness){
-                generate=0;
-            }
+            obstacleMove(); //obstacle
+            statusDisplay();// status bar
+            attackMove();
 
             SDL_RenderPresent(render1);
             SDL_RenderClear(render1);
@@ -147,58 +74,21 @@ void pigpeppa(SDL_Rect *peppaArgue,SDL_Event *peppaMove)
             (*peppaArgue).y+=(2+y/100);
             SDL_RenderCopy(render1,texture1,NULL,&rect_background1);
             SDL_RenderCopy(render1,texture2,NULL,&rect_background2);
-            SDL_RenderCopy(render1,peppa_texture,NULL,peppaArgue);
+            if(peppaHurt)
+            {
+                if(isHurt%2==0)
+                    SDL_RenderCopy(render1,peppa_texture,NULL,peppaArgue);
+                isHurt++;if(isHurt==500)
+                {
+                    isHurt=0;
+                    peppaHurt=0;
+                }
+            }
+            else SDL_RenderCopy(render1,peppa_texture,NULL,peppaArgue);
 
-            if(isObstacle1)
-            {
-                obstacle1Init(&rect_obstacle1);
-            }
-            if(isObstacle2)
-            {
-                obstacle2Init(&rect_obstacle2);
-            }
-            if(isObstacle3)
-            {
-                obstacle3Init(&rect_obstacle3);
-            }
-            if(isObstacle4)
-            {
-                obstacle4Init(&rect_obstacle4);
-            }
-            if(isObstacle5)
-            {
-                obstacle5Init(&rect_obstacle5);
-            }
-            if(isObstacle6)
-            {
-                obstacle6Init(&rect_obstacle6);
-            }
-            if(isObstacle7)
-            {
-                obstacle7Init(&rect_obstacle7);
-            }
-            SDL_RenderCopy(render1,obstacle1_texture,NULL,&rect_obstacle1);
-            SDL_RenderCopy(render1,obstacle2_texture,NULL,&rect_obstacle2);
-            SDL_RenderCopy(render1,obstacle3_texture,NULL,&rect_obstacle3);
-            SDL_RenderCopy(render1,obstacle4_texture,NULL,&rect_obstacle4);
-            SDL_RenderCopy(render1,obstacle5_texture,NULL,&rect_obstacle5);
-            SDL_RenderCopy(render1,obstacle6_texture,NULL,&rect_obstacle6);
-            SDL_RenderCopy(render1,obstacle7_texture,NULL,&rect_obstacle7);
-            if(generate==0)
-            {
-                int generate_obstacle = rand()%10+1;
-                if (generate_obstacle==1 && !isObstacle1 ) isObstacle1 = 1;
-                if (generate_obstacle==2 && !isObstacle2 ) isObstacle2 = 1;
-                if (generate_obstacle==3 && !isObstacle3 ) isObstacle3 = 1;
-                if (generate_obstacle==4 && !isObstacle4 ) isObstacle4 = 1;
-                if (generate_obstacle==5 && !isObstacle5 ) isObstacle5 = 1;
-                if (generate_obstacle==6 && !isObstacle6 ) isObstacle6 = 1;
-                if (generate_obstacle==7 && !isObstacle7 ) isObstacle7 = 1;
-            }
-            generate++;
-            if(generate==500/hardness){
-                generate=0;
-            }
+            obstacleMove();
+            statusDisplay();// status bar
+            attackMove();
 
             SDL_RenderPresent(render1);
             SDL_RenderClear(render1);
@@ -218,7 +108,7 @@ void pigpeppa(SDL_Rect *peppaArgue,SDL_Event *peppaMove)
         bool up=true;
         while(up)
         {
-
+            isPeppaKneel=1;
             SDL_PollEvent(peppaMove);
             if((*peppaMove).type==SDL_KEYUP)
             {
@@ -228,63 +118,23 @@ void pigpeppa(SDL_Rect *peppaArgue,SDL_Event *peppaMove)
 
             SDL_RenderCopy(render1,texture1,NULL,&rect_background1);
             SDL_RenderCopy(render1,texture2,NULL,&rect_background2);
-            SDL_RenderCopy(render1,peppa_kneel_texture,NULL,peppaArgue);
+            if(peppaHurt)
+            {
+                if(isHurt%2==0)
+                    SDL_RenderCopy(render1,peppa_kneel_texture,NULL,&rect_peppa_kneel);
+                isHurt++;if(isHurt==500)
+                {
+                    isHurt=0;
+                    peppaHurt=0;
+                }
+            }
+            else SDL_RenderCopy(render1,peppa_kneel_texture,NULL,&rect_peppa_kneel);
 
-            if(isObstacle1)
-            {
-                obstacle1Init(&rect_obstacle1);
-            }
-            if(isObstacle2)
-            {
-                obstacle2Init(&rect_obstacle2);
-            }
-            if(isObstacle3)
-            {
-                obstacle3Init(&rect_obstacle3);
-            }
-            if(isObstacle4)
-            {
-                obstacle4Init(&rect_obstacle4);
-            }
-            if(isObstacle5)
-            {
-                obstacle5Init(&rect_obstacle5);
-            }
-            if(isObstacle6)
-            {
-                obstacle6Init(&rect_obstacle6);
-            }
-            if(isObstacle7)
-            {
-                obstacle7Init(&rect_obstacle7);
-            }
-            SDL_RenderCopy(render1,obstacle1_texture,NULL,&rect_obstacle1);
-            SDL_RenderCopy(render1,obstacle2_texture,NULL,&rect_obstacle2);
-            SDL_RenderCopy(render1,obstacle3_texture,NULL,&rect_obstacle3);
-            SDL_RenderCopy(render1,obstacle4_texture,NULL,&rect_obstacle4);
-            SDL_RenderCopy(render1,obstacle5_texture,NULL,&rect_obstacle5);
-            SDL_RenderCopy(render1,obstacle6_texture,NULL,&rect_obstacle6);
-            SDL_RenderCopy(render1,obstacle7_texture,NULL,&rect_obstacle7);
-            if(generate==0)
-            {
-                int generate_obstacle = rand()%10+1;
-                if (generate_obstacle==1 && !isObstacle1 ) isObstacle1 = 1;
-                if (generate_obstacle==2 && !isObstacle2 ) isObstacle2 = 1;
-                if (generate_obstacle==3 && !isObstacle3 ) isObstacle3 = 1;
-                if (generate_obstacle==4 && !isObstacle4 ) isObstacle4 = 1;
-                if (generate_obstacle==5 && !isObstacle5 ) isObstacle5 = 1;
-                if (generate_obstacle==6 && !isObstacle6 ) isObstacle6 = 1;
-                if (generate_obstacle==7 && !isObstacle7 ) isObstacle7 = 1;
-            }
-            generate++;
-            if(generate==500/hardness){
-                generate=0;
-            }
+            obstacleMove();
+            statusDisplay();// status bar
+            attackMove();
 
             SDL_RenderPresent(render1);
-            SDL_RenderPresent(render1);
-
-            SDL_RenderClear(render1);
             SDL_RenderClear(render1);
 
             rect_background1.x-=speed;
@@ -294,66 +144,49 @@ void pigpeppa(SDL_Rect *peppaArgue,SDL_Event *peppaMove)
             SDL_Delay(2);
         }
 
+        isPeppaKneel=0;
     }
 
     else if((*peppaMove).type==SDL_MOUSEBUTTONDOWN) // shoot
     {
+        if(lana>0){
+            if (!bullet1out) {
+                bullet1out = 1;
+                lana--;
+            }
+            else {
+                if (!bullet2out) {
+                    bullet2out = 1;
+                    lana--;
+                }
+                else {
+                    if (!bullet3out) {
+                        bullet3out = 1;
+                        lana--;
+                    }
+                }
+            }
+        }
+
         for(int t=0;t<=100;t++)
         {
             SDL_RenderCopy(render1,texture1,NULL,&rect_background1);
             SDL_RenderCopy(render1,texture2,NULL,&rect_background2);
-            SDL_RenderCopy(render1,peppa_shoot_texture,NULL,peppaArgue);
+            if(peppaHurt)
+            {
+                if(isHurt%2==0)
+                    SDL_RenderCopy(render1,peppa_shoot_texture,NULL,peppaArgue);
+                isHurt++;if(isHurt==500)
+                {
+                    isHurt=0;
+                    peppaHurt=0;
+                }
+            }
+            else SDL_RenderCopy(render1,peppa_shoot_texture,NULL,peppaArgue);
 
-            if(isObstacle1)
-            {
-                obstacle1Init(&rect_obstacle1);
-            }
-            if(isObstacle2)
-            {
-                obstacle2Init(&rect_obstacle2);
-            }
-            if(isObstacle3)
-            {
-                obstacle3Init(&rect_obstacle3);
-            }
-            if(isObstacle4)
-            {
-                obstacle4Init(&rect_obstacle4);
-            }
-            if(isObstacle5)
-            {
-                obstacle5Init(&rect_obstacle5);
-            }
-            if(isObstacle6)
-            {
-                obstacle6Init(&rect_obstacle6);
-            }
-            if(isObstacle7)
-            {
-                obstacle7Init(&rect_obstacle7);
-            }
-            SDL_RenderCopy(render1,obstacle1_texture,NULL,&rect_obstacle1);
-            SDL_RenderCopy(render1,obstacle2_texture,NULL,&rect_obstacle2);
-            SDL_RenderCopy(render1,obstacle3_texture,NULL,&rect_obstacle3);
-            SDL_RenderCopy(render1,obstacle4_texture,NULL,&rect_obstacle4);
-            SDL_RenderCopy(render1,obstacle5_texture,NULL,&rect_obstacle5);
-            SDL_RenderCopy(render1,obstacle6_texture,NULL,&rect_obstacle6);
-            SDL_RenderCopy(render1,obstacle7_texture,NULL,&rect_obstacle7);
-            if(generate==0)
-            {
-                int generate_obstacle = rand()%10+1;
-                if (generate_obstacle==1 && !isObstacle1 ) isObstacle1 = 1;
-                if (generate_obstacle==2 && !isObstacle2 ) isObstacle2 = 1;
-                if (generate_obstacle==3 && !isObstacle3 ) isObstacle3 = 1;
-                if (generate_obstacle==4 && !isObstacle4 ) isObstacle4 = 1;
-                if (generate_obstacle==5 && !isObstacle5 ) isObstacle5 = 1;
-                if (generate_obstacle==6 && !isObstacle6 ) isObstacle6 = 1;
-                if (generate_obstacle==7 && !isObstacle7 ) isObstacle7 = 1;
-            }
-            generate++;
-            if(generate==500/hardness){
-                generate=0;
-            }
+            obstacleMove();
+            statusDisplay();// status bar
+            attackMove();
 
             SDL_RenderPresent(render1);
             SDL_RenderClear(render1);

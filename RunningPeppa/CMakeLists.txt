@@ -20,6 +20,9 @@ add_executable(
         peppa.h
         obstacle.c
         obstacle.h
+        status.c
+        status.h
+        global.h
 )
 
 target_link_libraries(RunningPeppa PRIVATE mingw32 SDL2main SDL2 SDL2_image SDL2_ttf SDL2_mixer )
