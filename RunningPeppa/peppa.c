@@ -3,7 +3,7 @@
 //
 
 #include "peppa.h"
-#include "status.h"
+#include "global.h"
 
 void pigpeppa(SDL_Rect *peppaArgue,SDL_Event *peppaMove)
 {
@@ -12,6 +12,7 @@ void pigpeppa(SDL_Rect *peppaArgue,SDL_Event *peppaMove)
         for(int y=0;y<=100;y++)
         {
             (*peppaArgue).y-=(2+y/100);
+            rect_shield.y-=(2+y/100);
             SDL_RenderCopy(render1,texture1,NULL,&rect_background1);
             SDL_RenderCopy(render1,texture2,NULL,&rect_background2);
             if(peppaHurt)
@@ -26,18 +27,28 @@ void pigpeppa(SDL_Rect *peppaArgue,SDL_Event *peppaMove)
                 }
             }
             else SDL_RenderCopy(render1,peppa_texture,NULL,peppaArgue);
+            if(isInvincible)
+            {
+                isInvincible++;
+                if(isInvincible==vincibleTime)
+                {
+                    isInvincible=0;
+                }
+                SDL_RenderCopy(render1,shield_texture,NULL,&rect_shield);
+            }
 
             obstacleMove();
             statusDisplay();// status bar
             attackMove();
+            scoreDisplay();
 
             SDL_RenderPresent(render1);
             SDL_RenderClear(render1);
 
             rect_background1.x-=speed;
             rect_background2.x-=speed;
-            if(rect_background1.x<=-1200)rect_background1.x=1200;
-            if(rect_background2.x<=-1200)rect_background2.x=1200;
+            if(rect_background1.x<=-edge)rect_background1.x=edge;
+            if(rect_background2.x<=-edge)rect_background2.x=edge;
             SDL_Delay(2);
         }
         for(int t=0;t<10;t++) // floating for 10ms
@@ -55,23 +66,34 @@ void pigpeppa(SDL_Rect *peppaArgue,SDL_Event *peppaMove)
                 }
             }
             else SDL_RenderCopy(render1,peppa_texture,NULL,peppaArgue);
+            if(isInvincible)
+            {
+                isInvincible++;
+                if(isInvincible==vincibleTime)
+                {
+                    isInvincible=0;
+                }
+                SDL_RenderCopy(render1,shield_texture,NULL,&rect_shield);
+            }
 
             obstacleMove(); //obstacle
             statusDisplay();// status bar
             attackMove();
+            scoreDisplay();
 
             SDL_RenderPresent(render1);
             SDL_RenderClear(render1);
 
             rect_background1.x-=speed;
             rect_background2.x-=speed;
-            if(rect_background1.x<=-1200)rect_background1.x=1200;
-            if(rect_background2.x<=-1200)rect_background2.x=1200;
+            if(rect_background1.x<=-edge)rect_background1.x=edge;
+            if(rect_background2.x<=-edge)rect_background2.x=edge;
             SDL_Delay(2);
         }
         for(int y=100;y>=0;y--)
         {
             (*peppaArgue).y+=(2+y/100);
+            rect_shield.y+=(2+y/100);
             SDL_RenderCopy(render1,texture1,NULL,&rect_background1);
             SDL_RenderCopy(render1,texture2,NULL,&rect_background2);
             if(peppaHurt)
@@ -85,18 +107,30 @@ void pigpeppa(SDL_Rect *peppaArgue,SDL_Event *peppaMove)
                 }
             }
             else SDL_RenderCopy(render1,peppa_texture,NULL,peppaArgue);
+            if(isInvincible)
+            {
+                isInvincible++;
+                if(isInvincible==vincibleTime)
+                {
+                    isInvincible=0;
+
+                }
+                SDL_RenderCopy(render1,shield_texture,NULL,&rect_shield);
+            }
 
             obstacleMove();
             statusDisplay();// status bar
             attackMove();
+            scoreDisplay();
 
             SDL_RenderPresent(render1);
             SDL_RenderClear(render1);
 
             rect_background1.x-=speed;
             rect_background2.x-=speed;
-            if(rect_background1.x<=-1200)rect_background1.x=1200;
-            if(rect_background2.x<=-1200)rect_background2.x=1200;
+            if(rect_background1.x<=-edge)rect_background1.x=edge;
+            if(rect_background2.x<=-edge)rect_background2.x=edge;
+
             SDL_Delay(2);
         }
 
@@ -129,18 +163,28 @@ void pigpeppa(SDL_Rect *peppaArgue,SDL_Event *peppaMove)
                 }
             }
             else SDL_RenderCopy(render1,peppa_kneel_texture,NULL,&rect_peppa_kneel);
+            if(isInvincible)
+            {
+                isInvincible++;
+                if(isInvincible==vincibleTime)
+                {
+                    isInvincible=0;
+                }
+                SDL_RenderCopy(render1,shield_texture,NULL,&rect_shield);
+            }
 
             obstacleMove();
             statusDisplay();// status bar
             attackMove();
+            scoreDisplay();
 
             SDL_RenderPresent(render1);
             SDL_RenderClear(render1);
 
             rect_background1.x-=speed;
             rect_background2.x-=speed;
-            if(rect_background1.x<=-1200)rect_background1.x=1200;
-            if(rect_background2.x<=-1200)rect_background2.x=1200;
+            if(rect_background1.x<=-edge)rect_background1.x=edge;
+            if(rect_background2.x<=-edge)rect_background2.x=edge;
             SDL_Delay(2);
         }
 
@@ -172,6 +216,7 @@ void pigpeppa(SDL_Rect *peppaArgue,SDL_Event *peppaMove)
         {
             SDL_RenderCopy(render1,texture1,NULL,&rect_background1);
             SDL_RenderCopy(render1,texture2,NULL,&rect_background2);
+
             if(peppaHurt)
             {
                 if(isHurt%2==0)
@@ -183,18 +228,29 @@ void pigpeppa(SDL_Rect *peppaArgue,SDL_Event *peppaMove)
                 }
             }
             else SDL_RenderCopy(render1,peppa_shoot_texture,NULL,peppaArgue);
+            if(isInvincible)
+            {
+                isInvincible++;
+                if(isInvincible==vincibleTime)
+                {
+                    isInvincible=0;
+                }
+                SDL_RenderCopy(render1,shield_texture,NULL,&rect_shield);
+            }
 
             obstacleMove();
             statusDisplay();// status bar
             attackMove();
+            scoreDisplay();
 
             SDL_RenderPresent(render1);
             SDL_RenderClear(render1);
 
             rect_background1.x-=speed;
             rect_background2.x-=speed;
-            if(rect_background1.x<=-1200)rect_background1.x=1200;
-            if(rect_background2.x<=-1200)rect_background2.x=1200;
+            if(rect_background1.x<=-edge)rect_background1.x=edge;
+            if(rect_background2.x<=-edge)rect_background2.x=edge;
+
             SDL_Delay(2);
         }
 

@@ -3,10 +3,9 @@
 //
 
 #include "obstacle.h"
-#include <stdbool.h>
+#include "global.h"
 
 bool collide(SDL_Rect *rect1) {
-    int errorMargin = 10;  // allow a certain error
 
     if (isPeppaKneel) {
         return (
@@ -36,23 +35,34 @@ bool collide(SDL_Rect *rect1) {
 void obstacleInit(SDL_Rect *obstacleArgue,int *num,int index)
 {
     obstacleArgue->x-=speed;
-    if (collide(obstacleArgue))
-    {
-        *num = 0;
-        peppaHurt=1;
-        isHurt=0;
-        obstacleArgue->x = 1200;
-        life--;
-    }
     if((index==1||index==2||index==5||index==6)&&destroyObstacle(obstacleArgue))
     {
         *num = 0;
-        obstacleArgue->x = 1200;
+        score+=scoreNum;
+        obstacleArgue->x = edge;
     }
-    if(obstacleArgue->x<=-200)
+    if (collide(obstacleArgue))
+    {
+        if(!isInvincible) {
+            *num = 0;
+            peppaHurt = 1;
+            isHurt = 0;
+            obstacleArgue->x = edge;
+            life--;
+            if (score <= scoreNum)
+                score -= score;
+            else score -= scoreNum;
+        }
+        else{
+            *num=0;
+            score+=100;
+            obstacleArgue->x=edge;
+        }
+    }
+    if(obstacleArgue->x<=-obstacleArgue->w)
     {
         *num=0;
-        obstacleArgue->x=1200;
+        obstacleArgue->x=edge;
     }
 }
 
@@ -64,18 +74,22 @@ void rewardInit(SDL_Rect *rewardArgue,int *num,int index)
         *num = 0;
         if(index==1)
         {
-            life++;
+            if(life<3)life++;
         }
         else if(index==2)
         {
-            lana++;
+            lana+=2;
         }
-        rewardArgue->x = 1200;
+        else if(index==3)
+        {
+            isInvincible=1;
+        }
+        rewardArgue->x = edge;
     }
-    if(rewardArgue->x<=-200)
+    if(rewardArgue->x<=-rewardArgue->w)
     {
         *num=0;
-        rewardArgue->x=1200;
+        rewardArgue->x=edge;
     }
 }
 
@@ -117,6 +131,10 @@ void obstacleMove()
     {
         rewardInit(&rect_reward2,&generateReward2,2);
     }
+    if(generateReward3)
+    {
+        rewardInit(&rect_reward3,&generateReward3,3);
+    }
     SDL_RenderCopy(render1,obstacle1_texture,NULL,&rect_obstacle1);
     SDL_RenderCopy(render1,obstacle2_texture,NULL,&rect_obstacle2);
     SDL_RenderCopy(render1,obstacle3_texture,NULL,&rect_obstacle3);
@@ -126,6 +144,7 @@ void obstacleMove()
     SDL_RenderCopy(render1,obstacle7_texture,NULL,&rect_obstacle7);
     SDL_RenderCopy(render1,reward1_texture,NULL,&rect_reward1);
     SDL_RenderCopy(render1,reward2_texture,NULL,&rect_reward2);
+    SDL_RenderCopy(render1,reward3_texture,NULL,&rect_reward3);
 
     if(generate==0)
     {
@@ -141,15 +160,16 @@ void obstacleMove()
         {
             if (generate_obstacle==8&&!generateReward1) generateReward1= 1;
             if (generate_obstacle==9&&!generateReward2) generateReward2= 1;
+            if (generate_obstacle==10&&!generateReward3) generateReward3= 1;
         }
     }
     generate++;
-    if(generate==500/(hardness)){
+    if(generate==obstacleGenerateNum/(hardness)){
         generate=0;
     }
-    
+
     generateRewardFrequency++;
-    if(generateRewardFrequency==1000){
+    if(generateRewardFrequency==rewardGenerateNum){
         generateRewardFrequency=0;
     }
 }
@@ -158,31 +178,31 @@ void attackMove()
 {
     if(bullet1out)
     {
-        rect_bullet1.x+=5;
+        rect_bullet1.x+=bulletSpeed;
         SDL_RenderCopy(render1,bullet_texture1,NULL,&rect_bullet1);
-        if(rect_bullet1.x>=1200)
+        if(rect_bullet1.x>=edge)
         {
-            rect_bullet1.x=230;
+            rect_bullet1.x=gunXray;
             bullet1out=0;
         }
     }
     if(bullet2out)
     {
-        rect_bullet2.x+=5;
+        rect_bullet2.x+=bulletSpeed;
         SDL_RenderCopy(render1,bullet_texture2,NULL,&rect_bullet2);
-        if(rect_bullet2.x>=1200)
+        if(rect_bullet2.x>=edge)
         {
-            rect_bullet2.x=230;
+            rect_bullet2.x=gunXray;
             bullet2out=0;
         }
     }
     if(bullet3out)
     {
-        rect_bullet3.x+=5;
+        rect_bullet3.x+=bulletSpeed;
         SDL_RenderCopy(render1,bullet_texture3,NULL,&rect_bullet3);
-        if(rect_bullet3.x>=1200)
+        if(rect_bullet3.x>=edge)
         {
-            rect_bullet3.x=230;
+            rect_bullet3.x=gunXray;
             bullet3out=0;
         }
     }
@@ -195,7 +215,7 @@ bool destroyObstacle(SDL_Rect *rect1)
         if(rect_bullet1.x+rect_bullet1.w>=rect1->x)
         {
             bullet1out=0;
-            rect_bullet1.x=230;
+            rect_bullet1.x=gunXray;
             return true;
         }
     }
@@ -204,7 +224,7 @@ bool destroyObstacle(SDL_Rect *rect1)
         if(rect_bullet2.x+rect_bullet2.w>=rect1->x)
         {
             bullet2out=0;
-            rect_bullet2.x=230;
+            rect_bullet2.x=gunXray;
             return true;
         }
     }
@@ -213,7 +233,7 @@ bool destroyObstacle(SDL_Rect *rect1)
         if(rect_bullet3.x+rect_bullet3.w>=rect1->x)
         {
             bullet3out=0;
-            rect_bullet3.x=230;
+            rect_bullet3.x=gunXray;
             return true;
         }
     }

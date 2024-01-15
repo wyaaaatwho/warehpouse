@@ -70,8 +70,8 @@ build CMakeFiles/RunningPeppa.dir/shutdown.c.obj: C_COMPILER__RunningPeppa_unsca
   OBJECT_DIR = CMakeFiles\RunningPeppa.dir
   OBJECT_FILE_DIR = CMakeFiles\RunningPeppa.dir
 
-build CMakeFiles/RunningPeppa.dir/homepage.c.obj: C_COMPILER__RunningPeppa_unscanned_Debug C$:/Users/26711/TerminalProject/RunningPeppa/homepage.c || cmake_object_order_depends_target_RunningPeppa
-  DEP_FILE = CMakeFiles\RunningPeppa.dir\homepage.c.obj.d
+build CMakeFiles/RunningPeppa.dir/pages.c.obj: C_COMPILER__RunningPeppa_unscanned_Debug C$:/Users/26711/TerminalProject/RunningPeppa/pages.c || cmake_object_order_depends_target_RunningPeppa
+  DEP_FILE = CMakeFiles\RunningPeppa.dir\pages.c.obj.d
   FLAGS = -g -std=gnu11 -fdiagnostics-color=always
   INCLUDES = -IC:/Users/26711/SDL2-2.28.5/SDL2-2.28.5/x86_64-w64-mingw32/bin
   OBJECT_DIR = CMakeFiles\RunningPeppa.dir
@@ -106,7 +106,7 @@ build CMakeFiles/RunningPeppa.dir/status.c.obj: C_COMPILER__RunningPeppa_unscann
 #############################################
 # Link the executable RunningPeppa.exe
 
-build RunningPeppa.exe: C_EXECUTABLE_LINKER__RunningPeppa_Debug CMakeFiles/RunningPeppa.dir/main.c.obj CMakeFiles/RunningPeppa.dir/initiating.c.obj CMakeFiles/RunningPeppa.dir/shutdown.c.obj CMakeFiles/RunningPeppa.dir/homepage.c.obj CMakeFiles/RunningPeppa.dir/peppa.c.obj CMakeFiles/RunningPeppa.dir/obstacle.c.obj CMakeFiles/RunningPeppa.dir/status.c.obj
+build RunningPeppa.exe: C_EXECUTABLE_LINKER__RunningPeppa_Debug CMakeFiles/RunningPeppa.dir/main.c.obj CMakeFiles/RunningPeppa.dir/initiating.c.obj CMakeFiles/RunningPeppa.dir/shutdown.c.obj CMakeFiles/RunningPeppa.dir/pages.c.obj CMakeFiles/RunningPeppa.dir/peppa.c.obj CMakeFiles/RunningPeppa.dir/obstacle.c.obj CMakeFiles/RunningPeppa.dir/status.c.obj
   FLAGS = -g
   LINK_LIBRARIES = -lmingw32  -lSDL2main  -lSDL2  -lSDL2_image  -lSDL2_ttf  -lSDL2_mixer  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\RunningPeppa.dir

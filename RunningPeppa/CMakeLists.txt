@@ -14,8 +14,8 @@ add_executable(
         initiating.h
         shutdown.c
         shutdown.h
-        homepage.c
-        homepage.h
+        pages.c
+        pages.h
         peppa.c
         peppa.h
         obstacle.c

@@ -5,13 +5,9 @@
 #ifndef RUNNINGPEPPA_HEADER_H
 #define RUNNINGPEPPA_HEADER_H
 //headers
-#include "initiating.h"
-#include "shutdown.h"
-#include "homepage.h"
-#include "peppa.h"
-#include "obstacle.h"
-#include <time.h>
-#include <stdlib.h>
+
+#include "global.h"
+
 //declares
 SDL_Window* window =NULL;
 
@@ -39,6 +35,8 @@ SDL_Surface* lanaFont=NULL;
 SDL_Surface *reward1=NULL;
 SDL_Surface *reward2=NULL;
 SDL_Surface *bullet=NULL;
+SDL_Surface *helpFont=NULL;
+SDL_Surface *scoreFont=NULL;
 
 SDL_Renderer *render1=NULL;
 
@@ -69,9 +67,15 @@ SDL_Texture *lanaBar_texture=NULL;
 SDL_Texture* lanaFont_texture=NULL;
 SDL_Texture *reward1_texture=NULL;
 SDL_Texture* reward2_texture=NULL;
+SDL_Texture* reward3_texture=NULL;
 SDL_Texture* bullet_texture1=NULL;
 SDL_Texture* bullet_texture2=NULL;
 SDL_Texture* bullet_texture3=NULL;
+SDL_Texture *scoreFontTexture=NULL;
+SDL_Texture *helpFontTexture=NULL;
+SDL_Texture *help_page1_texture=NULL;
+SDL_Texture *help_page2_texture=NULL;
+SDL_Texture *shield_texture=NULL;
 
 SDL_Rect rect_background1={.x=0,.y=0};
 SDL_Rect rect_background2={.x=1200,.y=0};
@@ -92,22 +96,29 @@ SDL_Rect rect_lanaBar={.x=14, .y=70};
 SDL_Rect rect_lanaBar_font={.x=66, .y=70};
 SDL_Rect rect_reward1={.x=1200, .y=360};
 SDL_Rect rect_reward2={.x=1200, .y=350};
-SDL_Rect rect_bullet1={.x=230, .y=350};
-SDL_Rect rect_bullet2={.x=230, .y=350};
-SDL_Rect rect_bullet3={.x=230, .y=350};
+SDL_Rect rect_reward3={.x=1200, .y=350};
+SDL_Rect rect_bullet1={.x=240, .y=380};
+SDL_Rect rect_bullet2={.x=240, .y=380};
+SDL_Rect rect_bullet3={.x=240, .y=380};
+SDL_Rect rect_help;
+SDL_Rect rect_helppage={.x=-10,.y=0};
+SDL_Rect rect_score={.x=780,.y=0,.w=100};
+SDL_Rect rect_shield;
 
-TTF_Font * font =NULL;
+TTF_Font * font1 =NULL;
+TTF_Font * font2 =NULL;
 SDL_Color font_color1={0x00,0x00,0x00,0x00};
 SDL_Color font_color2={0xff,0x00,0x00,0xff};
 
 // bool
 bool running=true;
 bool keyIsPressed = false;
+bool whetherstart=false;
 
 int life=3;
 int lana=5;
 int lr=1;
-int speed =2;
+int speed =3;
 int generate=0;
 int hardness=1;
 int isPeppaKneel=0;
@@ -120,11 +131,22 @@ int isObstacle4=0;
 int isObstacle5=0;
 int isObstacle6=0;
 int isObstacle7=0;
+int errorMargin = 10;
 int generateReward2=0;
 int generateReward1=0;
+int generateReward3=0;
 int generateRewardFrequency=0;
 int bullet1out=0;
 int bullet2out=0;
 int bullet3out=0;
-char buffer[10];
+int isInvincible=1;
+
+int score=0;
+int history=0;
+int score_frequency=0;
+char buffer1[10];
+char buffer2[30];
+char history_buffer[10];
+
+FILE *history_p=NULL;
 #endif //RUNNINGPEPPA_HEADER_H
