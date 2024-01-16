@@ -37,6 +37,7 @@ SDL_Surface *reward2=NULL;
 SDL_Surface *bullet=NULL;
 SDL_Surface *helpFont=NULL;
 SDL_Surface *scoreFont=NULL;
+SDL_Surface *restart=NULL;
 
 SDL_Renderer *render1=NULL;
 
@@ -76,6 +77,8 @@ SDL_Texture *helpFontTexture=NULL;
 SDL_Texture *help_page1_texture=NULL;
 SDL_Texture *help_page2_texture=NULL;
 SDL_Texture *shield_texture=NULL;
+SDL_Texture *restart1_texture=NULL;
+SDL_Texture *restart2_texture=NULL;
 
 SDL_Rect rect_background1={.x=0,.y=0};
 SDL_Rect rect_background2={.x=1200,.y=0};
@@ -104,6 +107,7 @@ SDL_Rect rect_help;
 SDL_Rect rect_helppage={.x=-10,.y=0};
 SDL_Rect rect_score={.x=780,.y=0,.w=100};
 SDL_Rect rect_shield;
+SDL_Rect rect_restart;
 
 TTF_Font * font1 =NULL;
 TTF_Font * font2 =NULL;
@@ -112,6 +116,7 @@ SDL_Color font_color2={0xff,0x00,0x00,0xff};
 
 // bool
 bool running=true;
+bool again=true;
 bool keyIsPressed = false;
 bool whetherstart=false;
 
@@ -139,7 +144,7 @@ int generateRewardFrequency=0;
 int bullet1out=0;
 int bullet2out=0;
 int bullet3out=0;
-int isInvincible=1;
+int isInvincible=0;
 
 int score=0;
 int history=0;

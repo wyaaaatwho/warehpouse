@@ -21,6 +21,7 @@
 #include "status.h"
 
 #define edge 1200
+#define sky 610
 #define obstacleGenerateNum 500
 #define rewardGenerateNum 1000
 #define lrNum 60
@@ -60,6 +61,7 @@ extern SDL_Surface *reward2;
 extern SDL_Surface *bullet;
 extern SDL_Surface *helpFont;
 extern SDL_Surface *scoreFont;
+extern SDL_Surface *restart;
 
 extern SDL_Renderer *render1;
 
@@ -99,6 +101,8 @@ extern SDL_Texture *helpFontTexture;
 extern SDL_Texture *help_page1_texture;
 extern SDL_Texture *help_page2_texture;
 extern SDL_Texture *shield_texture;
+extern SDL_Texture *restart1_texture;
+extern SDL_Texture *restart2_texture;
 
 extern SDL_Rect rect_background1;
 extern SDL_Rect rect_background2;
@@ -127,6 +131,7 @@ extern SDL_Rect rect_help;
 extern SDL_Rect rect_helppage;
 extern SDL_Rect rect_score;
 extern SDL_Rect rect_shield;
+extern SDL_Rect rect_restart;
 
 extern TTF_Font * font1;
 extern TTF_Font * font2;
@@ -134,6 +139,7 @@ extern SDL_Color font_color1;
 extern SDL_Color font_color2;
 
 extern bool running;
+extern bool again;
 extern bool keyIsPressed;
 extern bool whetherstart;
 

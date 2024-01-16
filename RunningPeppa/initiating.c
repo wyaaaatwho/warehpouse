@@ -19,7 +19,7 @@ int initiation ()
         TTF_Init();
         window= SDL_CreateWindow("RUNNING_PEPPA",
                                  SDL_WINDOWPOS_CENTERED,SDL_WINDOWPOS_CENTERED,
-                                 1200,610,SDL_WINDOW_SHOWN);
+                                 edge,sky,SDL_WINDOW_SHOWN);
 
         if(window==NULL)printf("SDL_CreateWindow Error: %s\n", SDL_GetError());
 
@@ -172,6 +172,15 @@ int initiation ()
             SDL_QueryTexture(bullet_texture1,NULL,NULL,&rect_bullet1.w,&rect_bullet1.h);
             SDL_QueryTexture(bullet_texture2,NULL,NULL,&rect_bullet2.w,&rect_bullet2.h);
             SDL_QueryTexture(bullet_texture3,NULL,NULL,&rect_bullet3.w,&rect_bullet3.h);
+
+            // initiating restart
+            restart=IMG_Load("./resource/restart1.png");
+            restart1_texture= SDL_CreateTextureFromSurface(render1,restart);
+            restart=IMG_Load("./resource/restart2.png");
+            restart2_texture= SDL_CreateTextureFromSurface(render1,restart);
+            SDL_QueryTexture(restart1_texture,NULL,NULL,&rect_restart.w,&rect_restart.h);
+            rect_restart.x=edge/2-rect_restart.w/2;
+            rect_restart.y=sky/2-rect_restart.h/2;
         }
 
         SDL_FreeSurface(backGround1);
@@ -199,6 +208,7 @@ int initiation ()
         SDL_FreeSurface(reward2);
         SDL_FreeSurface(bullet);
         SDL_FreeSurface(scoreFont);
+        SDL_FreeSurface(restart);
 
     }  // initiating
     return 0;

@@ -41,9 +41,8 @@ void obstacleInit(SDL_Rect *obstacleArgue,int *num,int index)
         score+=scoreNum;
         obstacleArgue->x = edge;
     }
-    if (collide(obstacleArgue))
+    if (collide(obstacleArgue)&&!isInvincible)
     {
-        if(!isInvincible) {
             *num = 0;
             peppaHurt = 1;
             isHurt = 0;
@@ -52,12 +51,12 @@ void obstacleInit(SDL_Rect *obstacleArgue,int *num,int index)
             if (score <= scoreNum)
                 score -= score;
             else score -= scoreNum;
-        }
-        else{
-            *num=0;
-            score+=100;
-            obstacleArgue->x=edge;
-        }
+    }
+    if(isInvincible&&obstacleArgue->x<=rect_shield.x+rect_shield.w)
+    {
+        *num=0;
+        score+=100;
+        obstacleArgue->x=edge;
     }
     if(obstacleArgue->x<=-obstacleArgue->w)
     {
@@ -78,7 +77,7 @@ void rewardInit(SDL_Rect *rewardArgue,int *num,int index)
         }
         else if(index==2)
         {
-            lana+=2;
+            lana++;
         }
         else if(index==3)
         {

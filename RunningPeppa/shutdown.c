@@ -49,32 +49,6 @@ void  shutdown()
     SDL_DestroyTexture(bullet_texture3);
     SDL_DestroyTexture(scoreFontTexture);
 
-    SDL_FreeSurface(backGround1);
-    SDL_FreeSurface(backGround2);
-    SDL_FreeSurface(peppa);
-    SDL_FreeSurface(peppa_left);
-    SDL_FreeSurface(peppa_right);
-    SDL_FreeSurface(peppa_shoot);
-    SDL_FreeSurface(peppa_kneel);
-    SDL_FreeSurface(Start_button);
-    SDL_FreeSurface(Start_button_on);
-    SDL_FreeSurface(difficulty_font);
-    SDL_FreeSurface(name_font);
-    SDL_FreeSurface(obstacle1);
-    SDL_FreeSurface(obstacle2);
-    SDL_FreeSurface(obstacle3);
-    SDL_FreeSurface(obstacle4);
-    SDL_FreeSurface(obstacle5);
-    SDL_FreeSurface(obstacle6);
-    SDL_FreeSurface(obstacle7);
-    SDL_FreeSurface(lifeBar);
-    SDL_FreeSurface(lanaBar);
-    SDL_FreeSurface(lanaFont);
-    SDL_FreeSurface(reward1);
-    SDL_FreeSurface(reward2);
-    SDL_FreeSurface(bullet);
-    SDL_FreeSurface(scoreFont);
-
     SDL_DestroyRenderer(render1);
     SDL_DestroyWindow(window);
 

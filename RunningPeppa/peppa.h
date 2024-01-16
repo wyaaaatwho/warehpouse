@@ -6,5 +6,5 @@
 #define RUNNINGPEPPA_PEPPA_H
 #include "global.h"
 void pigpeppa(SDL_Rect *peppaArgue,SDL_Event *peppaMove);
-void obstacleInit(SDL_Rect *obstacleArgue,int *num,int index);
+void peppaStatus();
 #endif //RUNNINGPEPPA_PEPPA_H

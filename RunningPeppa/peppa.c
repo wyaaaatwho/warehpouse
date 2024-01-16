@@ -256,5 +256,55 @@ void pigpeppa(SDL_Rect *peppaArgue,SDL_Event *peppaMove)
 
         SDL_FlushEvent(SDL_MOUSEBUTTONDOWN);
     }
+}
 
+void peppaStatus()
+{
+    if (!peppaHurt)
+    {
+        if (lr <= lrNum / 2 && !peppaHurt)
+        {
+            SDL_RenderCopy(render1, peppa_left_texture, NULL, &rect_peppa_left);
+        }
+        else if (lr >= lrNum / 2 && !peppaHurt)
+        {
+            SDL_RenderCopy(render1, peppa_right_texture, NULL, &rect_peppa_right);
+        }
+        lr++;
+        if (lr == lrNum)
+        {
+            lr = 0;
+        }
+    }//moving peppa
+    if (peppaHurt)
+    {
+        if (lr <= lrNum / 2 && isHurt % 2 == 0)
+        {
+            SDL_RenderCopy(render1, peppa_left_texture, NULL, &rect_peppa_left);
+        }
+        else if (lr > lrNum / 2 && isHurt % 2 == 0)
+        {
+            SDL_RenderCopy(render1, peppa_right_texture, NULL, &rect_peppa_right);
+        }
+        lr++;
+        isHurt++;
+        if (lr == lrNum)
+        {
+            lr = 0;
+        }
+        if (isHurt == 500)
+        {
+            isHurt = 0;
+            peppaHurt = 0;
+        }
+    }
+    if (isInvincible)
+    {
+        isInvincible++;
+        if (isInvincible == vincibleTime)
+        {
+            isInvincible = 0;
+        }
+        SDL_RenderCopy(render1, shield_texture, NULL, &rect_shield);
+    }
 }

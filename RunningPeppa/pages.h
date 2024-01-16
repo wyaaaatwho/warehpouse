@@ -6,4 +6,6 @@
 #define RUNNINGPEPPA_PAGES_H
 void homepage();
 void helpPage();
+int restartPage();
+void reInitiate();
 #endif //RUNNINGPEPPA_PAGES_H
