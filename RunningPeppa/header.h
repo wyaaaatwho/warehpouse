@@ -116,12 +116,13 @@ SDL_Color font_color2={0xff,0x00,0x00,0xff};
 
 // bool
 bool running=true;
-bool again=true;
-bool keyIsPressed = false;
 bool whetherstart=false;
 
+enum GameStatus currentGameStatus ;
+
+int gameRunning=0;
 int life=3;
-int lana=5;
+int lana=3;
 int lr=1;
 int speed =3;
 int generate=0;
@@ -149,6 +150,7 @@ int isInvincible=0;
 int score=0;
 int history=0;
 int score_frequency=0;
+
 char buffer1[10];
 char buffer2[30];
 char history_buffer[10];

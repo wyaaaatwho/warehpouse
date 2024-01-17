@@ -4,6 +4,15 @@
 
 #include "pages.h"
 #include "global.h"
+void moveBackground()
+{
+    SDL_RenderCopy(render1, texture1, NULL, &rect_background1);
+    SDL_RenderCopy(render1, texture2, NULL, &rect_background2);
+    rect_background1.x -= speed;
+    rect_background2.x -= speed;
+    if (rect_background1.x <= -edge)rect_background1.x = edge;
+    if (rect_background2.x <= -edge)rect_background2.x = edge;
+}
 void homepage ()
 {
     SDL_Rect Rec_Start_button={.y=200};
@@ -27,20 +36,13 @@ void homepage ()
     Rec_font2.x=edge/2-(Rec_font2.w/2)+2;
     rect_help.x=edge/2-(rect_help.w/2)+2; // decide location
 
-    SDL_RenderCopy(render1,  Start_button_texture, NULL, &Rec_Start_button);
-    SDL_RenderCopy(render1, difficulty_font_texture1, NULL, &Rec_font1);
-    SDL_RenderCopy(render1, name_font_texture, NULL, &Rec_name_font);
-    SDL_RenderCopy(render1, helpFontTexture, NULL, &rect_help);
-    SDL_RenderPresent(render1);
-
     SDL_Event start;
     whetherstart=false;
     bool on=false;
     while(!whetherstart)
     {
             SDL_RenderClear(render1);
-            SDL_RenderCopy(render1,texture1,NULL,&rect_background1);
-            SDL_RenderCopy(render1,texture2,NULL,&rect_background2);
+            moveBackground();
             if(on)
                 SDL_RenderCopy(render1,  Start_button_on_texture, NULL, &Rec_Start_button_on);
             else
@@ -52,20 +54,17 @@ void homepage ()
             SDL_RenderCopy(render1, name_font_texture, NULL, &Rec_name_font);
             SDL_RenderCopy(render1, helpFontTexture, NULL, &rect_help);
 
-            rect_background1.x-=1;
-            rect_background2.x-=1;
-            if(rect_background1.x<=-edge)rect_background1.x=edge;
-            if(rect_background2.x<=-edge)rect_background2.x=edge;
             SDL_RenderPresent(render1);
-            SDL_Delay(3);
+            SDL_Delay(DELAY_TIME);
 
         while(SDL_PollEvent(&start)!=0)
         {
             if(start.type==SDL_QUIT)
             {
                 whetherstart=true;
+                gameRunning=0;
                 running=false;
-                again=false;
+                currentGameStatus=gameOver;
                 // end the program
             }
             // start button
@@ -73,69 +72,28 @@ void homepage ()
             {
                 on =true;
 
-                SDL_RenderClear(render1);
-                SDL_RenderCopy(render1,texture1,NULL,&rect_background1);
-                SDL_RenderCopy(render1,texture2,NULL,&rect_background2);
-                rect_background1.x-=1;
-                rect_background2.x-=1;
-                if(rect_background1.x<=-edge)rect_background1.x=edge;
-                if(rect_background2.x<=-edge)rect_background2.x=edge;
-
                 if(start.type==SDL_MOUSEBUTTONDOWN)
                 {
                     whetherstart=true;
+                    currentGameStatus=gaming;
+                    Initiate();
                     break;
-                }
-                else
-                {
-                    if(speed==speed1)
-                    {
-                        SDL_RenderCopy(render1, Start_button_on_texture, NULL, &Rec_Start_button_on);
-                        SDL_RenderCopy(render1, difficulty_font_texture1, NULL, &Rec_font1);
-                        SDL_RenderCopy(render1, name_font_texture, NULL, &Rec_name_font);
-                        SDL_RenderCopy(render1, helpFontTexture, NULL, &rect_help);
-                        SDL_RenderPresent(render1);
-                        SDL_Delay(3);
-                    }
-                    else
-                    {
-                        SDL_RenderCopy(render1,  Start_button_on_texture, NULL, &Rec_Start_button_on);
-                        SDL_RenderCopy(render1, difficulty_font_texture2, NULL, &Rec_font1);
-                        SDL_RenderCopy(render1, name_font_texture, NULL, &Rec_name_font);
-                        SDL_RenderCopy(render1, helpFontTexture, NULL, &rect_help);
-                        SDL_RenderPresent(render1);
-                        SDL_Delay(3);
-                    }
                 }
             }
             // choose difficulty
             else if (((start.button.x>=462&&start.button.x<=534)||(start.button.x>=670&&start.button.x<=742))&&(start.button.y>=440&&start.button.y<=490))
             {
-                SDL_RenderClear(render1);
-                SDL_RenderCopy(render1,texture1,NULL,&rect_background1);
-                SDL_RenderCopy(render1,texture2,NULL,&rect_background2);
-                if(rect_background2.x<=-edge)rect_background2.x=edge;
+                on =false;
+
                 if(start.type==SDL_MOUSEBUTTONDOWN)
                 {
                     if(hardness==1)
                     {
-                        SDL_RenderCopy(render1, texture1, NULL, &rect_background1);
-                        SDL_RenderCopy(render1,  Start_button_texture, NULL, &Rec_Start_button);
-                        SDL_RenderCopy(render1, name_font_texture, NULL, &Rec_name_font);
-                        SDL_RenderCopy(render1, difficulty_font_texture2, NULL, &Rec_font1);
-                        SDL_RenderCopy(render1, helpFontTexture, NULL, &rect_help);
-                        SDL_RenderPresent(render1);
                         speed=speed2;
                         hardness=2;
                     }
                     else
                     {
-                        SDL_RenderCopy(render1, texture1, NULL, &rect_background1);
-                        SDL_RenderCopy(render1,  Start_button_texture, NULL, &Rec_Start_button);
-                        SDL_RenderCopy(render1, name_font_texture, NULL, &Rec_name_font);
-                        SDL_RenderCopy(render1, difficulty_font_texture1, NULL, &Rec_font1);
-                        SDL_RenderCopy(render1, helpFontTexture, NULL, &rect_help);
-                        SDL_RenderPresent(render1);
                         speed=speed1;
                         hardness=1;
                     }
@@ -144,77 +102,21 @@ void homepage ()
             // help page
             else if(start.button.x>=rect_help.x&&start.button.x<=rect_help.x+rect_help.w&&start.button.y>=rect_help.y&&start.button.y<=rect_help.y+rect_help.h)
             {
-                SDL_RenderClear(render1);
-                SDL_RenderCopy(render1,texture1,NULL,&rect_background1);
-                SDL_RenderCopy(render1,texture2,NULL,&rect_background2);
-                if(rect_background2.x<=-edge)rect_background2.x=edge;
+                on =false;
+
                 if(start.type==SDL_MOUSEBUTTONDOWN)
                 {
                     helpPage();
                 }
-                else
-                {
-                    if(hardness==1)
-                    {
-                        SDL_RenderCopy(render1, texture1, NULL, &rect_background1);
-                        SDL_RenderCopy(render1,  Start_button_texture, NULL, &Rec_Start_button);
-                        SDL_RenderCopy(render1, name_font_texture, NULL, &Rec_name_font);
-                        SDL_RenderCopy(render1, difficulty_font_texture2, NULL, &Rec_font1);
-                        SDL_RenderCopy(render1, helpFontTexture, NULL, &rect_help);
-                        SDL_RenderPresent(render1);
-                    }
-                    else
-                    {
-                        SDL_RenderCopy(render1, texture1, NULL, &rect_background1);
-                        SDL_RenderCopy(render1,  Start_button_texture, NULL, &Rec_Start_button);
-                        SDL_RenderCopy(render1, name_font_texture, NULL, &Rec_name_font);
-                        SDL_RenderCopy(render1, difficulty_font_texture1, NULL, &Rec_font1);
-                        SDL_RenderCopy(render1, helpFontTexture, NULL, &rect_help);
-                        SDL_RenderPresent(render1);
-                    }
-                }
-            }
-            else
-            {
-                on=false;
-
-                SDL_RenderClear(render1);
-                SDL_RenderCopy(render1,texture1,NULL,&rect_background1);
-                SDL_RenderCopy(render1,texture2,NULL,&rect_background2);
-                rect_background1.x-=1;
-                rect_background2.x-=1;
-                if(rect_background1.x<=-edge)rect_background1.x=edge;
-                if(rect_background2.x<=-edge)rect_background2.x=edge;
-
-                if(hardness==1)
-                {
-
-                    SDL_RenderCopy(render1, texture1, NULL, &rect_background1);
-                    SDL_RenderCopy(render1,  Start_button_texture, NULL, &Rec_Start_button);
-                    SDL_RenderCopy(render1, name_font_texture, NULL, &Rec_name_font);
-                    SDL_RenderCopy(render1, difficulty_font_texture1, NULL, &Rec_font1);
-                    SDL_RenderCopy(render1, helpFontTexture, NULL, &rect_help);
-                    SDL_RenderPresent(render1);
-                    SDL_Delay(3);
-                }
-                else
-                {
-
-                    SDL_RenderCopy(render1, texture1, NULL, &rect_background1);
-                    SDL_RenderCopy(render1,  Start_button_texture, NULL, &Rec_Start_button);
-                    SDL_RenderCopy(render1, name_font_texture, NULL, &Rec_name_font);
-                    SDL_RenderCopy(render1, difficulty_font_texture2, NULL, &Rec_font2);
-                    SDL_RenderCopy(render1, helpFontTexture, NULL, &rect_help);
-                    SDL_RenderPresent(render1);
-                    SDL_Delay(3);
-                }
             }
 
+            else{
+                on =false;
+            }
         }
     }
 
 }
-
 void helpPage()
 {
     bool helping=true;
@@ -234,7 +136,6 @@ void helpPage()
                 helping=false;
                 whetherstart=true;
                 running=false;
-                again=false;
                 // end the program
             }
             if(mouse.button.x<=276&&mouse.button.x>=30&&mouse.button.y>=478&&mouse.button.y<=600)
@@ -250,7 +151,6 @@ void helpPage()
                     SDL_RenderClear(render1);
                     SDL_QueryTexture(help_page2_texture,NULL,NULL,&rect_helppage.w,&rect_helppage.h);
                     SDL_RenderCopy(render1,help_page2_texture,NULL,&rect_helppage);
-                    SDL_RenderPresent(render1);
                 }
             }
             else
@@ -258,81 +158,92 @@ void helpPage()
                 SDL_RenderClear(render1);
                 SDL_QueryTexture(help_page1_texture,NULL,NULL,&rect_helppage.w,&rect_helppage.h);
                 SDL_RenderCopy(render1,help_page1_texture,NULL,&rect_helppage);
-                SDL_RenderPresent(render1);
 
             }
+            SDL_RenderPresent(render1);
         }
     }
 }
-
-int restartPage()
+void restartPage()
 {
-    SDL_RenderCopy(render1, texture1, NULL, &rect_background1);
-    SDL_RenderCopy(render1, texture2, NULL, &rect_background2);
-    SDL_QueryTexture(restart2_texture, NULL, NULL, &rect_restart.w, &rect_restart.h);
-    SDL_RenderCopy(render1, restart2_texture, NULL, &rect_restart);
-    SDL_RenderPresent(render1);
     SDL_Event whetherRestart;
     bool restartNow=false;
+    bool on=false;
+
     while(!restartNow)
     {
+        SDL_RenderClear(render1);
+        moveBackground();
+        if(!on) {
+            SDL_QueryTexture(restart1_texture, NULL, NULL, &rect_restart.w, &rect_restart.h);
+            SDL_RenderCopy(render1, restart1_texture, NULL, &rect_restart);
+        }
+        else {
+            SDL_QueryTexture(restart2_texture, NULL, NULL, &rect_restart.w, &rect_restart.h);
+            SDL_RenderCopy(render1, restart2_texture, NULL, &rect_restart);
+        }
+
         while(SDL_PollEvent(&whetherRestart)!=0)
         {
             if(whetherRestart.type==SDL_QUIT)
             {
                 restartNow=true;
+                gameRunning=0;
                 running=false;
-                again=false;
-                return 0;
+                currentGameStatus=gameOver;
+
                 // end the program
             }
+
+            //restart
             else if(whetherRestart.button.x<=rect_restart.x+rect_restart.w
             &&whetherRestart.button.x>=rect_restart.x&&whetherRestart.button.y>=rect_restart.y
             &&whetherRestart.button.y<=rect_restart.y+116)
             {
+                on=true;
                 if(whetherRestart.type==SDL_MOUSEBUTTONDOWN)
                 {
                     whetherstart=true;
-                    reInitiate();
-                    return 2;
-                }
-                else{
-                    SDL_RenderCopy(render1, texture1, NULL, &rect_background1);
-                    SDL_RenderCopy(render1, texture2, NULL, &rect_background2);
-                    SDL_QueryTexture(restart2_texture, NULL, NULL, &rect_restart.w, &rect_restart.h);
-                    SDL_RenderCopy(render1, restart2_texture, NULL, &rect_restart);
-                    SDL_RenderPresent(render1);
+                    currentGameStatus=gaming;
+                    Initiate();
+                    return;
                 }
             }
+
+            //homepage
             else if(whetherRestart.button.x<=700
                     &&whetherRestart.button.x>=490&&whetherRestart.button.y>=350
                     &&whetherRestart.button.y<=400)
             {
+                on=false;
                 if(whetherRestart.type==SDL_MOUSEBUTTONDOWN)
                 {
                     whetherstart=true;
-                    reInitiate();
-                    return 1;
+                    currentGameStatus=goHomepage;
+                    return;
                 }
             }
-            else
-            {
-                SDL_RenderCopy(render1, texture1, NULL, &rect_background1);
-                SDL_RenderCopy(render1, texture2, NULL, &rect_background2);
-                SDL_QueryTexture(restart1_texture,NULL,NULL,&rect_restart.w,&rect_restart.h);
-                SDL_RenderCopy(render1,restart1_texture,NULL,&rect_restart);
-                SDL_RenderPresent(render1);
+            else{
+                on=false;
             }
         }
+
+        SDL_Delay(2);
+        SDL_RenderPresent(render1);
     }
 }
 
-void reInitiate()
+void Initiate()
 {
-    running=1;life=3;lana=5;isPeppaKneel=0;peppaHurt=0;
+    running=true;life=Max_Life;lana=Max_lana;isPeppaKneel=0;peppaHurt=0;
     isHurt=0;isObstacle1=0;isObstacle2=0;isObstacle3=0;isObstacle4=0;
-    isObstacle5=0;isObstacle6=0;isObstacle7=0;generateReward2=0;
-    generateReward1=0;generateReward3=0;generateRewardFrequency=0;
+    isObstacle5=0;isObstacle6=0;isObstacle7=0;generate=0;
+    generateReward1=0;generateReward2=0;generateReward3=0;generateRewardFrequency=0;
     bullet1out=0;bullet2out=0;bullet3out=0;isInvincible=0;
     history=history>score?history:score;score=0;
+    rect_obstacle1.x=edge;rect_obstacle2.x=edge;rect_obstacle3.x=edge;
+    rect_obstacle4.x=edge;rect_obstacle5.x=edge;rect_obstacle6.x=edge;
+    rect_obstacle7.x=edge;rect_reward1.x=edge;rect_reward2.x=edge;rect_reward3.x=edge;
+    rect_bullet1.x=240;rect_bullet2.x=240;rect_bullet3.x=240;
+
 }

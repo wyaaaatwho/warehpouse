@@ -6,5 +6,6 @@
 #define RUNNINGPEPPA_PEPPA_H
 #include "global.h"
 void pigpeppa(SDL_Rect *peppaArgue,SDL_Event *peppaMove);
-void peppaStatus();
+void peppaDisplay(SDL_Rect *pigRect,SDL_Texture *pigTexture);
+void peppaNormalDisplay();
 #endif //RUNNINGPEPPA_PEPPA_H

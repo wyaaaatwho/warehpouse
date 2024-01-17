@@ -4,8 +4,9 @@
 
 #ifndef RUNNINGPEPPA_PAGES_H
 #define RUNNINGPEPPA_PAGES_H
+void moveBackground();
 void homepage();
 void helpPage();
-int restartPage();
-void reInitiate();
+void restartPage();
+void Initiate();
 #endif //RUNNINGPEPPA_PAGES_H

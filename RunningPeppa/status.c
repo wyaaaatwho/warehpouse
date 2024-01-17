@@ -7,7 +7,7 @@
 
 void statusDisplay()
 {
-    if(life>=3)
+    if(life>=Max_Life)
     {
         SDL_RenderCopy(render1,lifeBar1_texture,NULL,&rect_lifeBar);
     }

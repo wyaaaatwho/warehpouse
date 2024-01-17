@@ -22,6 +22,9 @@
 
 #define edge 1200
 #define sky 610
+#define DELAY_TIME 2
+#define Max_Life 3
+#define Max_lana 3
 #define obstacleGenerateNum 500
 #define rewardGenerateNum 1000
 #define lrNum 60
@@ -30,7 +33,9 @@
 #define speed2 4
 #define gunXray 240
 #define bulletSpeed 6
+#define hurtTime 500
 #define vincibleTime 5000
+
 
 
 extern SDL_Window* window;
@@ -139,10 +144,17 @@ extern SDL_Color font_color1;
 extern SDL_Color font_color2;
 
 extern bool running;
-extern bool again;
 extern bool keyIsPressed;
 extern bool whetherstart;
 
+extern enum GameStatus {
+    goHomepage,
+    gaming,
+    goRestart,
+    gameOver
+} currentGameStatus;
+
+extern int gameRunning;
 extern int life;
 extern int lana;
 extern int lr;

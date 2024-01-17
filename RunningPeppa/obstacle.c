@@ -77,7 +77,7 @@ void rewardInit(SDL_Rect *rewardArgue,int *num,int index)
         }
         else if(index==2)
         {
-            lana++;
+            lana+=2;
         }
         else if(index==3)
         {
