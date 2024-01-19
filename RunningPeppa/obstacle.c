@@ -43,6 +43,8 @@ void obstacleInit(SDL_Rect *obstacleArgue,int *num,int index)
     }
     if (collide(obstacleArgue)&&!isInvincible)
     {
+        Mix_PlayChannel(1, peppaDeathScream, 0);
+
             *num = 0;
             peppaHurt = 1;
             isHurt = 0;

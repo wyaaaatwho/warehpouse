@@ -49,7 +49,9 @@ void gameLoop()
         if (life <= 0) {
             running = false;
             currentGameStatus=goRestart;
-            SDL_Delay(DELAY_TIME*1000);
+            Mix_PlayChannel(1, peppaDeathScream, 0);
+            peppaDeathDisplay();
+            SDL_Delay(DELAY_TIME*1500);
         }
 
         SDL_Delay(DELAY_TIME);
@@ -63,6 +65,8 @@ int main(int argc, char *argv[])
     gameRunning=1;
 
     currentGameStatus = goHomepage;
+
+    Mix_PlayMusic(mainMusic, -1);
 
     while(gameRunning)
     {

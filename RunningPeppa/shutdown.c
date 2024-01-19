@@ -52,7 +52,11 @@ void  shutdown()
     SDL_DestroyRenderer(render1);
     SDL_DestroyWindow(window);
 
+    Mix_HaltMusic();Mix_FreeMusic(mainMusic);
+    Mix_FreeChunk(peppaDeathScream);Mix_FreeChunk(peppaHonk);
+
     SDL_Quit();
     IMG_Quit();
     TTF_Quit();
+    Mix_Quit();
 }

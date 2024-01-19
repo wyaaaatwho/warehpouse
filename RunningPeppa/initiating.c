@@ -10,13 +10,18 @@ int initiation ()
     // initiating window
     if (SDL_Init(SDL_INIT_VIDEO) != 0)
     {
-        printf("SDL_Init Error: %s\n", SDL_GetError()); return 1;
+        printf("SDL_Init Error: %s\n", SDL_GetError()); return -1;
+    }
+    if (SDL_Init(SDL_INIT_AUDIO) != 0) {
+        printf("SDL_Init Error: %s\n", SDL_GetError());
+        return -1;
     }
 
     else
     {
         IMG_Init(IMG_INIT_PNG|IMG_INIT_JPG);
         TTF_Init();
+        Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048);
         window= SDL_CreateWindow("RUNNING_PEPPA",
                                  SDL_WINDOWPOS_CENTERED,SDL_WINDOWPOS_CENTERED,
                                  edge,sky,SDL_WINDOW_SHOWN);
@@ -59,12 +64,15 @@ int initiation ()
             peppa_right= IMG_Load("./resource/walkingpeppa - right.png");
             peppa_shoot= IMG_Load("./resource/walkingpeppa - shooting.png");
             peppa_kneel= IMG_Load("./resource/walkingpeppa - kneel.png");
+            pork= IMG_Load("./resource/pork.png");
+
             //loading peppa
             peppa_texture=SDL_CreateTextureFromSurface(render1, peppa);
             peppa_left_texture=SDL_CreateTextureFromSurface(render1, peppa_left);
             peppa_right_texture=SDL_CreateTextureFromSurface(render1, peppa_right);
             peppa_shoot_texture=SDL_CreateTextureFromSurface(render1, peppa_shoot);
             peppa_kneel_texture=SDL_CreateTextureFromSurface(render1, peppa_kneel);
+            pork_texture=SDL_CreateTextureFromSurface(render1, pork);
             SDL_QueryTexture(peppa_texture, NULL, NULL, &rect_peppa.w, &rect_peppa.h);
             SDL_QueryTexture(peppa_kneel_texture, NULL, NULL, &rect_peppa_kneel.w, &rect_peppa_kneel.h);
             SDL_QueryTexture(peppa_left_texture, NULL, NULL, &rect_peppa_left.w, &rect_peppa_left.h);
@@ -181,6 +189,15 @@ int initiation ()
             SDL_QueryTexture(restart1_texture,NULL,NULL,&rect_restart.w,&rect_restart.h);
             rect_restart.x=edge/2-rect_restart.w/2;
             rect_restart.y=sky/2-rect_restart.h/2;
+
+            // loading music
+            mainMusic = Mix_LoadMUS("./resource/Children_s-Choir-Peppa-Pig.mp3");
+            peppaHonk=Mix_LoadWAV("./resource/peppaHonk.mp3");
+            peppaDeathScream=Mix_LoadWAV("./resource/peppaDeathScream.mp3");
+            if (mainMusic == NULL||peppaHonk==NULL||peppaDeathScream==NULL) {
+                printf("music loading failed: %s\n", Mix_GetError());
+            }
+            Mix_AllocateChannels(2);
         }
 
         SDL_FreeSurface(backGround1);

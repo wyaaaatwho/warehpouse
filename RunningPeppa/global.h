@@ -10,6 +10,7 @@
 #include <SDL2/SDL_image.h>
 #include <stdbool.h>
 #include <SDL2/SDL_ttf.h>
+#include <SDL2/SDL_mixer.h>
 #include <time.h>
 #include <stdlib.h>
 
@@ -22,6 +23,7 @@
 
 #define edge 1200
 #define sky 610
+#define ground 428
 #define DELAY_TIME 2
 #define Max_Life 3
 #define Max_lana 3
@@ -67,6 +69,7 @@ extern SDL_Surface *bullet;
 extern SDL_Surface *helpFont;
 extern SDL_Surface *scoreFont;
 extern SDL_Surface *restart;
+extern SDL_Surface *pork;
 
 extern SDL_Renderer *render1;
 
@@ -108,6 +111,7 @@ extern SDL_Texture *help_page2_texture;
 extern SDL_Texture *shield_texture;
 extern SDL_Texture *restart1_texture;
 extern SDL_Texture *restart2_texture;
+extern SDL_Texture *pork_texture;
 
 extern SDL_Rect rect_background1;
 extern SDL_Rect rect_background2;
@@ -137,14 +141,19 @@ extern SDL_Rect rect_helppage;
 extern SDL_Rect rect_score;
 extern SDL_Rect rect_shield;
 extern SDL_Rect rect_restart;
+extern SDL_Rect rect_pork;
 
 extern TTF_Font * font1;
 extern TTF_Font * font2;
+
 extern SDL_Color font_color1;
 extern SDL_Color font_color2;
 
+extern Mix_Music* mainMusic;
+extern Mix_Chunk* peppaHonk;
+extern Mix_Chunk* peppaDeathScream;
+
 extern bool running;
-extern bool keyIsPressed;
 extern bool whetherstart;
 
 extern enum GameStatus {

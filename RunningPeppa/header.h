@@ -38,6 +38,7 @@ SDL_Surface *bullet=NULL;
 SDL_Surface *helpFont=NULL;
 SDL_Surface *scoreFont=NULL;
 SDL_Surface *restart=NULL;
+SDL_Surface *pork=NULL;
 
 SDL_Renderer *render1=NULL;
 
@@ -79,6 +80,7 @@ SDL_Texture *help_page2_texture=NULL;
 SDL_Texture *shield_texture=NULL;
 SDL_Texture *restart1_texture=NULL;
 SDL_Texture *restart2_texture=NULL;
+SDL_Texture *pork_texture=NULL;
 
 SDL_Rect rect_background1={.x=0,.y=0};
 SDL_Rect rect_background2={.x=1200,.y=0};
@@ -108,11 +110,17 @@ SDL_Rect rect_helppage={.x=-10,.y=0};
 SDL_Rect rect_score={.x=780,.y=0,.w=100};
 SDL_Rect rect_shield;
 SDL_Rect rect_restart;
+SDL_Rect rect_pork;
 
 TTF_Font * font1 =NULL;
 TTF_Font * font2 =NULL;
+
 SDL_Color font_color1={0x00,0x00,0x00,0x00};
 SDL_Color font_color2={0xff,0x00,0x00,0xff};
+
+Mix_Music* mainMusic=NULL;
+Mix_Chunk* peppaHonk=NULL;
+Mix_Chunk* peppaDeathScream=NULL;
 
 // bool
 bool running=true;
